@@ -175,6 +175,7 @@ src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
         buttonEl.addEventListener('click', function(e){
           e.preventDefault();
           try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
+          try { gtag('event', 'lead_whatsapp'); } catch(err){ console.warn('gtag error', err); }
           const href = this.getAttribute('data-href');
         if(href && href !== '#') { 
           window.location.href = href; 
