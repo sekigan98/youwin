@@ -109,7 +109,7 @@ src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
   <!-- SCRIPT: CTA dinámico -->
   <script>
     (function () {
-      const WA_NUMBER = '5493812169394';
+      const WA_NUMBER = '543812169394';
       const phrases = [
         "Hablá con nosotros en WhatsApp 📲",
         "Entrar ya 🚀",
@@ -167,9 +167,9 @@ src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
           e.preventDefault();
           try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
           const href = this.getAttribute('data-href');
-          if(href && href !== '#') {
-            window.open(href, '_blank', 'noopener,noreferrer');
-          }
+        if(href && href !== '#') { 
+          window.location.href = href; 
+        }
         }, {passive: false});
       }
 
