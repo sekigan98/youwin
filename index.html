@@ -180,7 +180,7 @@ src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
       // Esperamos un momento a que se abra WhatsApp antes de enviar el evento
       setTimeout(() => {
         try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
-        try { gtag('event', 'lead_whatsapp_rondeau'); } catch(err){ console.warn('gtag error', err); }
+        try { gtag('event', 'lead_whatsapp_Colon'); } catch(err){ console.warn('gtag error', err); }
       }, 800);
       window.location.href = href;
     }
