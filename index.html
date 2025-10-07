@@ -170,13 +170,28 @@ src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
     }, 200);
   }
 
-  function attachClickTracking(buttonEl) {
-    if (!buttonEl) return;
-    buttonEl.addEventListener('click', function(){
-      try { fbq('track', 'Lead'); } catch(err){ console.warn('fbq error', err); }
-      try { gtag('event', 'lead_whatsapp_ganaste'); } catch(err){ console.warn('gtag error', err); }
-    });
-  }
+function attachClickTracking(buttonEl) {
+  if (!buttonEl) return;
+  buttonEl.addEventListener('click', function(){
+    const eventId = 'lead_cta_' + Date.now(); // Genera un ID único
+
+    try {
+      fbq('track', 'Lead', {
+        event_id: eventId,
+        value: 0,
+        currency: 'ARS'
+      });
+    } catch(err) {
+      console.warn('fbq error', err);
+    }
+
+    try {
+      gtag('event', 'lead_whatsapp_ganaste');
+    } catch(err) {
+      console.warn('gtag error', err);
+    }
+  });
+}
 
   updateCTAs(currentIndex);
   setInterval(() => {
