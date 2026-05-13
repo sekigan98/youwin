@@ -396,7 +396,12 @@
   <!-- SCRIPT: CTA dinámico + tracking + reveal -->
   <script>
   (function () {
-    const WA_NUMBER = '541124656608';
+    const DEFAULT_WA_NUMBERS = ['541124656608'];
+    const NUMBERS_FILE = './numeros.json';
+    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
+
+    let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+    let nextNumberIndex = getStoredRotationIndex();
 
     const phrases = [
       "Quiero crear mi usuario gratis 🍀",
@@ -420,10 +425,86 @@
 
     let currentIndex = Math.floor(Math.random() * phrases.length);
 
-    function buildWhatsAppHref(phrase) {
-      const base = 'https://wa.me/' + WA_NUMBER;
+    function normalizeWhatsAppNumber(value) {
+      return String(value || '').replace(/\D/g, '');
+    }
+
+    function normalizeWhatsAppNumbers(data) {
+      const rawNumbers = Array.isArray(data)
+        ? data
+        : (data && Array.isArray(data.numeros))
+          ? data.numeros
+          : (data && Array.isArray(data.numbers))
+            ? data.numbers
+            : (data && Array.isArray(data.whatsapp))
+              ? data.whatsapp
+              : [];
+
+      return rawNumbers
+        .map(item => typeof item === 'object' ? (item.numero || item.number || item.phone || '') : item)
+        .map(normalizeWhatsAppNumber)
+        .filter(Boolean);
+    }
+
+    function getStoredRotationIndex() {
+      try {
+        const storedIndex = Number(localStorage.getItem(ROTATION_KEY));
+        return Number.isFinite(storedIndex) && storedIndex >= 0 ? storedIndex : 0;
+      } catch (err) {
+        return 0;
+      }
+    }
+
+    function saveStoredRotationIndex(index) {
+      try {
+        localStorage.setItem(ROTATION_KEY, String(index));
+      } catch (err) {
+        // Si el navegador bloquea localStorage, la rotación igual funciona durante la sesión actual.
+      }
+    }
+
+    function getCurrentWhatsAppNumber() {
+      if (!whatsappNumbers.length) {
+        whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+      }
+
+      nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
+      return whatsappNumbers[nextNumberIndex];
+    }
+
+    function getNextWhatsAppNumberForClick() {
+      const number = getCurrentWhatsAppNumber();
+      nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
+      saveStoredRotationIndex(nextNumberIndex);
+      return number;
+    }
+
+    function buildWhatsAppHref(phrase, phoneNumber = getCurrentWhatsAppNumber()) {
+      const base = 'https://wa.me/' + phoneNumber;
       const message = `¡Hola! Quiero más información sobre Ganamos. (${phrase})`;
       return base + '?text=' + encodeURIComponent(message);
+    }
+
+    async function loadWhatsAppNumbers() {
+      try {
+        const response = await fetch(NUMBERS_FILE, { cache: 'no-store' });
+
+        if (!response.ok) {
+          throw new Error('No se pudo leer ' + NUMBERS_FILE);
+        }
+
+        const data = await response.json();
+        const loadedNumbers = normalizeWhatsAppNumbers(data);
+
+        if (loadedNumbers.length) {
+          whatsappNumbers = loadedNumbers;
+          nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        }
+      } catch (err) {
+        console.warn('Usando número de WhatsApp por defecto:', err);
+      }
+
+      updateCTAs(currentIndex);
     }
 
     function fadeText(el, newText) {
@@ -446,6 +527,9 @@
       ctaBtnEl.setAttribute('href', waHref);
       ctaBtnBottomEl.setAttribute('href', waHref);
 
+      ctaBtnEl.dataset.ctaPhrase = phrase;
+      ctaBtnBottomEl.dataset.ctaPhrase = phrase;
+
       ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
       ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
     }
@@ -454,6 +538,10 @@
       if (!buttonEl) return;
 
       buttonEl.addEventListener('click', function () {
+        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
+        const phoneNumber = getNextWhatsAppNumberForClick();
+        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+
         const eventId = 'lead_cta_' + locationName + '_' + Date.now();
 
         try {
@@ -482,6 +570,7 @@
     }
 
     updateCTAs(currentIndex);
+    loadWhatsAppNumbers();
 
     setInterval(() => {
       currentIndex = (currentIndex + 1) % phrases.length;
