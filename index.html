@@ -181,6 +181,10 @@
       animation-delay: 1.5s;
     }
 
+    .mock-card.delay-3 {
+      animation-delay: 2.1s;
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -232,7 +236,7 @@
       <!-- Texto -->
       <div class="text-center lg:text-left reveal">
         <span class="pulse-badge inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full border border-[#a855f733] bg-[#160b2a]/80 text-sm text-[#e9d5ff]">
-          Plataforma online segura · Atención 24hs
+          Plataforma online segura · Cargas automáticas · Atención 24hs
         </span>
 
         <img
@@ -250,8 +254,8 @@
         </h1>
 
         <p class="text-lg md:text-xl text-[#c9b8dd] mb-8 max-w-2xl mx-auto lg:mx-0">
-          Disfrutá una plataforma confiable con +2000 juegos, atención personalizada las 24 horas
-          y bono de bienvenida para empezar con todo.
+          Disfrutá una plataforma confiable con +2000 juegos, cargas automáticas,
+          atención personalizada las 24 horas y bono de bienvenida para empezar con todo.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
@@ -282,46 +286,56 @@
           <div class="rounded-[26px] border border-white/5 bg-gradient-to-br from-[#150b24] to-[#090512] p-6">
             <div class="flex items-center justify-between mb-5">
               <div>
-                <p class="text-sm text-[#c4a3ff]">Panel Ganamos</p>
+                <p class="text-sm text-[#c4a3ff]">Ganamos</p>
                 <h3 class="text-2xl font-bold text-white">Acceso inmediato</h3>
               </div>
-              <div class="h-3 w-3 rounded-full bg-[#a855f7] shadow-[0_0_20px_rgba(60,242,208,0.8)]"></div>
+              <div class="h-3 w-3 rounded-full bg-[#a855f7] shadow-[0_0_20px_rgba(168,85,247,0.8)]"></div>
             </div>
 
             <div class="grid gap-4">
               <div class="mock-card glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
                     <p class="text-sm text-[#b9a4d8]">Bono de bienvenida</p>
-                    <p class="text-xl font-bold text-[#e9d5ff]">+50% De bonificacion en tu primera vez sin tope maximo</p>
+                    <p class="text-xl font-bold text-[#e9d5ff]">+50% de bonificación en tu primera vez sin tope máximo</p>
                   </div>
-                  <span class="text-2xl">🎁</span>
+                  <span class="text-2xl shrink-0">🎁</span>
                 </div>
               </div>
 
               <div class="mock-card delay-1 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
                     <p class="text-sm text-[#b9a4d8]">Juegos disponibles</p>
                     <p class="text-xl font-bold text-white">Más de 2000 opciones</p>
                   </div>
-                  <span class="text-2xl">🎮</span>
+                  <span class="text-2xl shrink-0">🎮</span>
                 </div>
               </div>
 
               <div class="mock-card delay-2 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
                     <p class="text-sm text-[#b9a4d8]">Atención personalizada</p>
                     <p class="text-xl font-bold text-white">Disponible 24/7</p>
                   </div>
-                  <span class="text-2xl">🕐</span>
+                  <span class="text-2xl shrink-0">🕐</span>
+                </div>
+              </div>
+
+              <div class="mock-card delay-3 glass rounded-2xl p-4">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p class="text-sm text-[#b9a4d8]">Cargas automáticas</p>
+                    <p class="text-xl font-bold text-white">Cargá saldo desde la página</p>
+                  </div>
+                  <span class="text-2xl shrink-0">⚡</span>
                 </div>
               </div>
             </div>
 
             <div class="mt-5 rounded-2xl border border-[#a855f722] bg-[#10091c] px-4 py-3 text-sm text-[#d8c7ff]">
-              Registrate en segundos y empezá hoy mismo.
+              Registrate, cargá saldo automáticamente y empezá hoy mismo.
             </div>
           </div>
         </div>
@@ -339,7 +353,7 @@
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
           <div class="text-3xl mb-4">🎮</div>
           <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">+2000 juegos online</h3>
@@ -353,6 +367,14 @@
           <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Bono de bienvenida</h3>
           <p class="text-[#d4c4ea]">
             Empezá con una promo especial para nuevos usuarios y aprovechá tus primeros movimientos.
+          </p>
+        </div>
+
+        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
+          <div class="text-3xl mb-4">⚡</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Cargas automáticas</h3>
+          <p class="text-[#d4c4ea]">
+            Cargá saldo directamente desde la página, sin pedir CBU ni esperar una gestión manual.
           </p>
         </div>
 
@@ -376,7 +398,7 @@
 
       <h3 class="text-3xl font-bold mb-4">¿Querés empezar ahora?</h3>
       <p class="text-sm md:text-base text-[#c9b8dd] mb-7">
-        Escribinos por WhatsApp y recibí atención personalizada para crear tu usuario y conocer la plataforma.
+        Escribinos por WhatsApp y recibí atención personalizada para crear tu usuario, cargar saldo automáticamente y conocer la plataforma.
       </p>
 
       <a id="ctaBtnBottom"
@@ -410,6 +432,7 @@
       "Quiero aprovechar el bono de bienvenida 🎁",
       "Contame cómo funciona Ganamos 🔍",
       "Quiero saber cómo cargar y retirar 💰",
+      "Quiero hacer una carga automática ⚡",
       "Estoy buscando juegos confiables 👀",
       "Quiero jugar hoy mismo 🕹️",
       "Mostrame cómo registrarme en segundos ⚡",
@@ -546,7 +569,7 @@
 
         try {
           fbq('track', 'Lead', {
-            content_name: 'Hoy Ganas WhatsApp CTA',
+            content_name: 'Ganamos WhatsApp CTA',
             content_category: locationName,
             value: 0,
             currency: 'ARS'
@@ -558,7 +581,7 @@
         }
 
         try {
-          gtag('event', 'lead_whatsapp_Hoy Ganas', {
+          gtag('event', 'lead_whatsapp_Ganamos', {
             event_category: 'engagement',
             event_label: locationName,
             value: 1
