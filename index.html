@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QF271E9TVW"></script>
@@ -36,166 +36,114 @@
   </noscript>
   <!-- End Meta Pixel Code -->
 
-  <title>Ganamos | 50% de bonificación en tu primera carga</title>
-  <meta name="description" content="Creá tu usuario en Ganamos, activá 50% de bonificación en tu primera carga y empezá hoy con cargas automáticas y atención 24 horas." />
+  <title>Ganamos | Creá tu usuario y recibí 50% extra</title>
+  <meta name="description" content="Creá tu usuario en Ganamos por WhatsApp. 50% de bonificación en tu primera carga, carga mínima $500, retiro mínimo $5.000 y atención 24 horas." />
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root {
-      --bg: #0b0615;
-      --bg-soft: #160b2a;
+      --bg: #090512;
+      --bg-2: #120821;
       --card: rgba(22, 10, 38, 0.78);
-      --stroke: rgba(168, 85, 247, 0.24);
+      --stroke: rgba(216, 180, 254, 0.22);
+      --stroke-strong: rgba(216, 180, 254, 0.36);
       --primary: #a855f7;
       --primary-2: #7c3aed;
-      --accent: #e9d5ff;
-      --text-soft: #c9b8dd;
-      --shadow-glow: 0 0 35px rgba(168, 85, 247, 0.24);
+      --accent: #f3e8ff;
+      --muted: #c9b8dd;
+      --muted-2: #9f88ba;
     }
 
     * {
+      box-sizing: border-box;
       scroll-behavior: smooth;
     }
 
+    html,
     body {
-      background:
-        radial-gradient(circle at 16% 16%, rgba(168, 85, 247, 0.22), transparent 34%),
-        radial-gradient(circle at 84% 12%, rgba(124, 58, 237, 0.19), transparent 32%),
-        radial-gradient(circle at 50% 100%, rgba(216, 180, 254, 0.11), transparent 42%),
-        linear-gradient(180deg, #0b0615 0%, #10091c 48%, #05030a 100%);
+      width: 100%;
       overflow-x: hidden;
     }
 
-    .hero-grid {
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(168, 85, 247, 0.32), transparent 31rem),
+        radial-gradient(circle at 92% 12%, rgba(124, 58, 237, 0.22), transparent 28rem),
+        linear-gradient(180deg, #090512 0%, #120821 47%, #05030a 100%);
+      color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .page-noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.13;
       background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.72), transparent 94%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.72), transparent 94%);
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.75), transparent 90%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.75), transparent 90%);
     }
 
     .glass {
-      background: rgba(16, 9, 28, 0.74);
+      background: rgba(16, 8, 29, 0.74);
+      border: 1px solid var(--stroke);
+      box-shadow: 0 16px 55px rgba(0, 0, 0, 0.28), 0 0 32px rgba(168, 85, 247, 0.13);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow-glow);
     }
 
-    .bonus-glass {
+    .bonus-shell {
       background:
-        radial-gradient(circle at 20% 18%, rgba(233, 213, 255, 0.20), transparent 34%),
-        linear-gradient(135deg, rgba(168, 85, 247, 0.24), rgba(16, 9, 28, 0.82) 52%, rgba(124, 58, 237, 0.20));
-      border: 1px solid rgba(233, 213, 255, 0.22);
-      box-shadow: 0 0 55px rgba(168, 85, 247, 0.28);
-    }
-
-    .fade-text {
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    .fade-out {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-
-    .fade-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .float-orb {
-      position: absolute;
-      border-radius: 9999px;
-      filter: blur(18px);
-      opacity: 0.30;
-      animation: floatY 7s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .float-orb.orb-1 {
-      width: 260px;
-      height: 260px;
-      background: rgba(168, 85, 247, 0.24);
-      top: 8%;
-      left: -4%;
-    }
-
-    .float-orb.orb-2 {
-      width: 190px;
-      height: 190px;
-      background: rgba(216, 180, 254, 0.20);
-      right: 2%;
-      top: 18%;
-      animation-delay: 1.2s;
-    }
-
-    .float-orb.orb-3 {
-      width: 240px;
-      height: 240px;
-      background: rgba(124, 58, 237, 0.20);
-      bottom: 8%;
-      left: 12%;
-      animation-delay: 2.2s;
+        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.22), transparent 27%),
+        linear-gradient(135deg, rgba(168, 85, 247, 0.37), rgba(21, 9, 39, 0.93) 54%, rgba(124, 58, 237, 0.28));
+      border: 1px solid rgba(233, 213, 255, 0.30);
+      box-shadow: 0 22px 70px rgba(168, 85, 247, 0.22);
     }
 
     .shine-btn {
       position: relative;
-      overflow: hidden;
       isolation: isolate;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.42);
     }
 
     .shine-btn::before {
       content: "";
       position: absolute;
-      top: -120%;
-      left: -45%;
-      width: 45%;
-      height: 300%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.34),
-        transparent
-      );
+      top: -150%;
+      left: -60%;
+      width: 48%;
+      height: 360%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.36), transparent);
       transform: rotate(18deg);
-      animation: shineSweep 3.7s linear infinite;
-      z-index: 0;
+      animation: shineSweep 3.6s linear infinite;
+      z-index: -1;
     }
 
-    .shine-btn > * {
-      position: relative;
-      z-index: 1;
+    .soft-card,
+    .faq-card,
+    .step-card {
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
     }
 
-    .benefit-card,
-    .step-card,
-    .faq-card {
-      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    .soft-card:hover,
+    .faq-card:hover,
+    .step-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--stroke-strong);
+      background: rgba(27, 13, 48, 0.80);
     }
-
-    .benefit-card:hover,
-    .step-card:hover,
-    .faq-card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(168, 85, 247, 0.48);
-      box-shadow: 0 16px 50px rgba(168, 85, 247, 0.18);
-    }
-
-    .mock-card {
-      animation: floatY 5s ease-in-out infinite;
-    }
-
-    .mock-card.delay-1 { animation-delay: 0.8s; }
-    .mock-card.delay-2 { animation-delay: 1.5s; }
-    .mock-card.delay-3 { animation-delay: 2.1s; }
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(22px);
+      transition: opacity 0.62s ease, transform 0.62s ease;
     }
 
     .reveal.show {
@@ -203,371 +151,352 @@
       transform: translateY(0);
     }
 
-    .pulse-badge {
-      animation: pulseGlow 2.2s ease-in-out infinite;
-    }
-
-    .bonus-number {
-      text-shadow: 0 0 35px rgba(233, 213, 255, 0.40);
-    }
-
     .sticky-mobile-cta {
       display: none;
     }
 
-    @media (max-width: 768px) {
-      .sticky-mobile-cta {
-        display: flex;
-        position: fixed;
-        left: 14px;
-        right: 14px;
-        bottom: 14px;
-        z-index: 60;
-      }
-
-      body {
-        padding-bottom: 88px;
-      }
-    }
-
-    @keyframes floatY {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-14px); }
+    .safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     @keyframes shineSweep {
-      0% { left: -45%; }
-      100% { left: 130%; }
+      0% { left: -60%; }
+      100% { left: 135%; }
     }
 
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.24);
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 92px;
       }
-      50% {
-        box-shadow: 0 0 0 12px rgba(168, 85, 247, 0);
+
+      .sticky-mobile-cta {
+        display: block;
+        position: fixed;
+        z-index: 60;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+
+      .mobile-compact-hero {
+        min-height: auto;
+        padding-top: 20px;
+      }
+
+      .hero-logo {
+        width: 208px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.18rem, 11vw, 3.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.055em;
+      }
+
+      .glass {
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
       }
     }
   </style>
 </head>
 
-<body class="text-white antialiased">
+<body>
+  <div class="page-noise"></div>
 
-  <!-- Fondo decorativo -->
-  <div class="float-orb orb-1"></div>
-  <div class="float-orb orb-2"></div>
-  <div class="float-orb orb-3"></div>
-
-  <!-- HERO -->
-  <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="hero-grid absolute inset-0 opacity-40"></div>
-
-    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
-      <!-- Texto -->
-      <div class="text-center lg:text-left reveal">
-        <span class="pulse-badge inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full border border-[#a855f733] bg-[#160b2a]/80 text-sm text-[#e9d5ff]">
-          🎁 50% de bonificación en tu primera carga · Sin tope máximo
-        </span>
+  <!-- HERO MOBILE-FIRST -->
+  <header class="relative mobile-compact-hero min-h-screen flex items-center overflow-hidden">
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-14 grid lg:grid-cols-[1.04fr_0.96fr] gap-8 lg:gap-12 items-center">
+      <section class="text-center lg:text-left reveal">
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#d8b4fe3b] bg-white/[0.06] px-3.5 py-2 text-xs sm:text-sm font-bold text-[#f3e8ff] mb-5">
+          <span>🎁</span>
+          <span>50% extra en tu primera carga</span>
+        </div>
 
         <img
           src="https://ganamosnet.club/img/src/components/Logo/img/logo-net-new.png"
           alt="Logo Ganamos"
-          class="mx-auto lg:mx-0 mb-8 w-72 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.24)]"
+          class="hero-logo mx-auto lg:mx-0 mb-6 w-64 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.28)]"
         />
 
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
-          Activá tu
-          <span class="bg-gradient-to-r from-[#f7edff] via-[#c084fc] to-[#7c3aed] bg-clip-text text-transparent">
-            50% de bonificación
+        <h1 class="hero-title text-5xl md:text-7xl font-black leading-[0.96] tracking-[-0.055em] mb-5">
+          Creá tu usuario y recibí
+          <span class="block bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent">
+            50% extra
           </span>
-          y empezá hoy en Ganamos
         </h1>
 
-        <p class="text-lg md:text-xl text-[#c9b8dd] mb-8 max-w-2xl mx-auto lg:mx-0">
-          Creá tu usuario por WhatsApp, recibí <strong class="text-white">50% extra en tu primera carga</strong> y empezá en minutos con cargas automáticas, atención 24hs y una plataforma online con +2000 juegos.
+        <p class="text-base md:text-xl text-[#d8c7ee] mb-5 max-w-2xl mx-auto lg:mx-0">
+          Hablás por WhatsApp, te ayudamos a crear tu cuenta y activás el bono de bienvenida para empezar hoy.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6 max-w-xl mx-auto lg:mx-0">
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Carga mín.</p>
+            <p class="text-sm sm:text-lg font-black text-white">$500</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Retiro mín.</p>
+            <p class="text-sm sm:text-lg font-black text-white">$5.000</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Atención</p>
+            <p class="text-sm sm:text-lg font-black text-white">24 hs</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
           <a id="ctaBtn"
              role="button"
-             aria-label="Ir a WhatsApp"
+             aria-label="Crear usuario por WhatsApp"
              href="#"
-             class="shine-btn inline-flex w-full sm:w-auto items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.36)] hover:scale-105 transition transform"
+             class="shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 text-base font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
              rel="noopener noreferrer">
-            <span id="ctaText">Cargando...</span>
+            Crear usuario por WhatsApp
           </a>
 
-          <a id="ctaSmall"
-             href="#como-empezar"
-             class="inline-flex w-full sm:w-auto items-center justify-center border border-[#a855f733] bg-[#160b2a]/70 px-5 py-3 rounded-2xl text-sm text-[#f5edff] hover:bg-[#24113d] transition">
-            Ver cómo activar el bono
+          <a href="#info"
+             class="inline-flex w-full sm:w-auto items-center justify-center rounded-2xl border border-[#d8b4fe33] bg-white/[0.05] px-6 py-4 text-sm font-bold text-[#f5edff] transition hover:bg-white/[0.09]">
+            Ver mínimos y promo
           </a>
         </div>
 
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto lg:mx-0">
-          <div class="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-            <p class="text-xs text-[#9a86b8]">Atención</p>
-            <p class="font-bold text-[#e9d5ff]">24 horas</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-            <p class="text-xs text-[#9a86b8]">Carga</p>
-            <p class="font-bold text-[#e9d5ff]">Automática</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-            <p class="text-xs text-[#9a86b8]">Promo</p>
-            <p class="font-bold text-[#e9d5ff]">50% extra</p>
-          </div>
-        </div>
-
-        <p class="mt-5 text-xs text-[#8f7aa8]">
-          Promoción disponible para nuevos usuarios. Plataforma para mayores de 18 años. Jugá con responsabilidad.
+        <p class="mt-4 text-xs leading-relaxed text-[#9d87b7] max-w-xl mx-auto lg:mx-0">
+          Promoción para nuevos usuarios. Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.
         </p>
-      </div>
+      </section>
 
-      <!-- Visual -->
-      <div class="relative reveal">
-        <div class="bonus-glass rounded-[34px] p-5 md:p-6">
-          <div class="rounded-[28px] border border-white/10 bg-gradient-to-br from-[#150b24]/95 to-[#090512]/95 p-6 md:p-7">
-            <div class="flex items-center justify-between mb-6">
+      <section class="reveal">
+        <div class="bonus-shell rounded-[30px] p-4 sm:p-6">
+          <div class="rounded-[24px] border border-white/10 bg-[#090512]/80 p-5 sm:p-7">
+            <div class="flex items-start justify-between gap-4 mb-5">
               <div>
-                <p class="text-sm text-[#c4a3ff]">Bono de bienvenida</p>
-                <h3 class="text-2xl md:text-3xl font-black text-white">Primera carga</h3>
+                <p class="text-sm font-bold text-[#c4a3ff]">Bono de bienvenida</p>
+                <h2 class="text-2xl sm:text-3xl font-black">Primera carga</h2>
               </div>
-              <span class="inline-flex items-center justify-center rounded-full bg-[#a855f7]/18 border border-[#e9d5ff33] px-3 py-1 text-sm text-[#e9d5ff]">
-                Activo hoy
-              </span>
+              <span class="rounded-full border border-[#e9d5ff33] bg-white/[0.07] px-3 py-1 text-xs font-bold text-[#f3e8ff]">Activo</span>
             </div>
 
-            <div class="relative overflow-hidden rounded-[28px] border border-[#e9d5ff22] bg-[#10091c] p-6 md:p-7 text-center mb-5">
-              <p class="text-sm uppercase tracking-[0.28em] text-[#c9b8dd]">Recibís</p>
-              <div class="bonus-number text-7xl md:text-8xl font-black leading-none bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent">
+            <div class="rounded-[26px] border border-[#e9d5ff24] bg-gradient-to-br from-[#1a0b2f] to-[#0b0615] p-5 text-center mb-4">
+              <p class="text-xs uppercase tracking-[0.26em] text-[#c9b8dd]">Recibís</p>
+              <div class="text-7xl sm:text-8xl font-black leading-none bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent drop-shadow-[0_0_28px_rgba(233,213,255,0.18)]">
                 +50%
               </div>
-              <p class="mt-3 text-xl font-extrabold text-white">de bonificación</p>
-              <p class="mt-2 text-sm text-[#c9b8dd]">En tu primera carga · Sin tope máximo</p>
+              <p class="mt-2 text-lg font-black">en tu primera carga</p>
+              <p class="mt-1 text-sm text-[#bda9d6]">Sin tope máximo informado</p>
             </div>
 
-            <div class="grid gap-4">
-              <div class="mock-card glass rounded-2xl p-4">
-                <div class="flex items-center justify-between gap-4">
+            <div class="grid gap-3">
+              <div class="glass rounded-2xl p-4">
+                <div class="flex items-center justify-between gap-3">
                   <div>
-                    <p class="text-sm text-[#b9a4d8]">Cargas automáticas</p>
-                    <p class="text-xl font-bold text-white">Desde la página</p>
+                    <p class="text-sm text-[#b9a4d8]">Ejemplo rápido</p>
+                    <p class="text-lg sm:text-xl font-black">Cargás $500 → recibís $750</p>
                   </div>
-                  <span class="text-2xl shrink-0">⚡</span>
+                  <span class="text-2xl">⚡</span>
                 </div>
               </div>
 
-              <div class="mock-card delay-1 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between gap-4">
-                  <div>
-                    <p class="text-sm text-[#b9a4d8]">Juegos disponibles</p>
-                    <p class="text-xl font-bold text-white">Más de 2000 opciones</p>
-                  </div>
-                  <span class="text-2xl shrink-0">🎮</span>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
+                  <p class="text-xs text-[#a996c2]">Carga mínima</p>
+                  <p class="text-xl font-black">$500</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
+                  <p class="text-xs text-[#a996c2]">Retiro mínimo</p>
+                  <p class="text-xl font-black">$5.000</p>
                 </div>
               </div>
 
-              <div class="mock-card delay-2 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between gap-4">
-                  <div>
-                    <p class="text-sm text-[#b9a4d8]">Soporte real</p>
-                    <p class="text-xl font-bold text-white">Atención 24/7</p>
-                  </div>
-                  <span class="text-2xl shrink-0">🕐</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-5 rounded-2xl border border-[#a855f722] bg-[#10091c] px-4 py-3 text-sm text-[#d8c7ff]">
-              Escribinos, creá tu usuario y activá el 50% de bonificación para empezar hoy mismo.
+              <a id="ctaBtnCard"
+                 href="#"
+                 class="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-[#160b2a] transition hover:scale-[1.02] active:scale-[0.99]"
+                 rel="noopener noreferrer">
+                Pedir mi usuario ahora
+              </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </header>
 
-  <!-- FRANJA DE BONO -->
-  <section class="relative z-10 -mt-8 px-6">
-    <div class="max-w-6xl mx-auto glass rounded-[28px] p-5 md:p-6 reveal">
-      <div class="grid md:grid-cols-[1.1fr_1.7fr_auto] gap-5 items-center">
-        <div>
-          <p class="text-sm text-[#c4a3ff]">Promo destacada</p>
-          <h2 class="text-2xl md:text-3xl font-black">50% de bonificación</h2>
+  <!-- BARRA DE INFO -->
+  <section id="info" class="relative z-10 px-4 sm:px-6 -mt-2 md:-mt-8">
+    <div class="max-w-6xl mx-auto glass rounded-[26px] p-4 sm:p-5 reveal">
+      <div class="grid md:grid-cols-[1fr_1fr_1fr_auto] gap-3 md:gap-4 items-center text-center md:text-left">
+        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
+          <p class="text-xs text-[#a996c2]">Bono inicial</p>
+          <p class="text-xl font-black text-[#f3e8ff]">50% extra</p>
         </div>
-        <p class="text-[#d4c4ea]">
-          La oferta queda clara desde el primer segundo: usuario nuevo, primera carga, 50% extra y atención por WhatsApp para empezar rápido.
-        </p>
-        <a href="#registro" class="inline-flex items-center justify-center rounded-2xl border border-[#a855f733] bg-[#a855f714] px-5 py-3 font-bold text-[#f5edff] hover:bg-[#24113d] transition">
-          Activar ahora
+        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
+          <p class="text-xs text-[#a996c2]">Mínimo de carga</p>
+          <p class="text-xl font-black text-[#f3e8ff]">$500</p>
+        </div>
+        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
+          <p class="text-xs text-[#a996c2]">Mínimo de retiro</p>
+          <p class="text-xl font-black text-[#f3e8ff]">$5.000</p>
+        </div>
+        <a id="ctaBtnInfo" href="#" class="shine-btn inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 font-black text-white" rel="noopener noreferrer">
+          Activar bono
         </a>
       </div>
     </div>
   </section>
 
-  <!-- BENEFICIOS -->
-  <main class="relative py-20">
-    <section class="max-w-6xl mx-auto px-6 text-center">
+  <main class="relative py-14 sm:py-20">
+    <!-- BENEFICIOS -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <div class="reveal">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué empezar hoy en Ganamos?</h2>
-        <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-10">
-          Todo pensado para que entres rápido, aproveches el bono y recibas atención real por WhatsApp.
+        <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-3">Todo listo para empezar desde el celu</h2>
+        <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-8">
+          La idea es simple: crear usuario rápido, cargar fácil y tener ayuda por WhatsApp cuando la necesites.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">🎁</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">50% extra</h3>
-          <p class="text-[#d4c4ea]">
-            Recibí un <strong class="text-white">50% de bonificación en tu primera carga</strong> y empezá con más saldo desde el primer momento.
-          </p>
-        </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
+          <div class="text-3xl mb-3">🎁</div>
+          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">50% en la primera carga</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Pedí el bono de bienvenida y recibí saldo extra en tu primera carga.</p>
+        </article>
 
-        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">⚡</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Cargas automáticas</h3>
-          <p class="text-[#d4c4ea]">
-            Cargá saldo directamente desde la página, sin pedir CBU ni esperar una gestión manual.
-          </p>
-        </div>
+        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
+          <div class="text-3xl mb-3">📲</div>
+          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Atención por WhatsApp</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás el botón, escribís y te guiamos para crear el usuario.</p>
+        </article>
 
-        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">🎮</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">+2000 juegos online</h3>
-          <p class="text-[#d4c4ea]">
-            Accedé a una plataforma estable y completa, con variedad para todos los gustos.
-          </p>
-        </div>
+        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
+          <div class="text-3xl mb-3">⚡</div>
+          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Cargas automáticas</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Cargá desde la página de forma más cómoda, sin pedir CBU manualmente.</p>
+        </article>
 
-        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">🕐</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Atención 24 horas</h3>
-          <p class="text-[#d4c4ea]">
-            Recibí ayuda personalizada cuando la necesites, con respuesta rápida por WhatsApp.
-          </p>
-        </div>
+        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
+          <div class="text-3xl mb-3">🎮</div>
+          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">+2000 juegos</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Entrá a una plataforma online con variedad y acceso rápido.</p>
+        </article>
       </div>
     </section>
 
-    <!-- CÓMO EMPEZAR -->
-    <section id="como-empezar" class="max-w-6xl mx-auto px-6 pt-20 text-center">
-      <div class="reveal">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Empezar es muy simple</h2>
-        <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-10">
-          Te guiamos paso a paso para crear tu usuario, activar el bono y hacer tu primera carga automática.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="step-card reveal glass p-6 rounded-3xl text-left">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#a855f71f] border border-[#a855f733] text-xl font-black text-[#e9d5ff] mb-4">1</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Escribinos por WhatsApp</h3>
-          <p class="text-[#d4c4ea]">
-            Tocá el botón, hablá con un asesor y creá tu usuario en minutos.
-          </p>
-        </div>
-
-        <div class="step-card reveal glass p-6 rounded-3xl text-left">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#a855f71f] border border-[#a855f733] text-xl font-black text-[#e9d5ff] mb-4">2</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Activá el 50%</h3>
-          <p class="text-[#d4c4ea]">
-            Pedí tu bono de bienvenida y recibí 50% extra en tu primera carga.
-          </p>
-        </div>
-
-        <div class="step-card reveal glass p-6 rounded-3xl text-left">
-          <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#a855f71f] border border-[#a855f733] text-xl font-black text-[#e9d5ff] mb-4">3</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Cargá y empezá hoy</h3>
-          <p class="text-[#d4c4ea]">
-            Hacé tu carga automática desde la página y comenzá a usar la plataforma al instante.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- OBJECIONES / CONFIANZA -->
-    <section class="max-w-6xl mx-auto px-6 pt-20">
-      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-center">
-        <div class="reveal">
-          <span class="inline-block mb-4 px-3 py-1 rounded-full bg-[#a855f714] border border-[#a855f733] text-sm text-[#e9d5ff]">
-            Acceso rápido
-          </span>
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Menos espera, más comodidad</h2>
-          <p class="text-[#c9b8dd] mb-6">
-            La landing ahora empuja una acción más concreta: crear usuario, activar el 50% y cargar saldo. Eso ayuda a que el mensaje llegue con más intención y no solo por curiosidad.
-          </p>
-
-          <a href="#registro" class="inline-flex items-center justify-center rounded-2xl bg-white text-[#160b2a] px-6 py-3 font-extrabold hover:scale-105 transition transform">
-            Quiero activar mi bono
+    <!-- PASOS -->
+    <section id="como-empezar" class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-10 items-start">
+        <div class="reveal lg:sticky lg:top-8">
+          <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.05] px-3 py-1 text-sm font-bold text-[#f3e8ff] mb-4">Cómo empezar</span>
+          <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-4">En 3 pasos ya estás adentro</h2>
+          <p class="text-[#c9b8dd] mb-5">Pensado para que desde el celular sea claro, rápido y sin vueltas.</p>
+          <a id="ctaBtnSteps" href="#" class="hidden sm:inline-flex shine-btn items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-3.5 font-black text-white" rel="noopener noreferrer">
+            Quiero mi usuario
           </a>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div class="faq-card reveal glass rounded-3xl p-6">
-            <h3 class="font-bold text-[#e9d5ff] mb-2">¿El bono es real?</h3>
-            <p class="text-[#d4c4ea] text-sm">Sí, es 50% de bonificación en la primera carga para nuevos usuarios.</p>
-          </div>
-          <div class="faq-card reveal glass rounded-3xl p-6">
-            <h3 class="font-bold text-[#e9d5ff] mb-2">¿Hay atención?</h3>
-            <p class="text-[#d4c4ea] text-sm">Sí, recibís asistencia por WhatsApp durante el proceso de registro y carga.</p>
-          </div>
-          <div class="faq-card reveal glass rounded-3xl p-6">
-            <h3 class="font-bold text-[#e9d5ff] mb-2">¿Cómo cargo saldo?</h3>
-            <p class="text-[#d4c4ea] text-sm">Podés hacerlo con cargas automáticas desde la página, sin gestión manual.</p>
-          </div>
-          <div class="faq-card reveal glass rounded-3xl p-6">
-            <h3 class="font-bold text-[#e9d5ff] mb-2">¿Puedo empezar hoy?</h3>
-            <p class="text-[#d4c4ea] text-sm">Sí, escribís por WhatsApp, creás tu usuario y activás el bono en minutos.</p>
-          </div>
+        <div class="grid gap-4">
+          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">1</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Escribís por WhatsApp</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás “Crear usuario” y mandás el mensaje automático.</p>
+            </div>
+          </article>
+
+          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">2</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Creás tu usuario</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Un asesor te ayuda a dejar la cuenta lista en pocos minutos.</p>
+            </div>
+          </article>
+
+          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">3</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Activás el bono y cargás</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">La carga mínima es de <strong class="text-white">$500</strong> y el retiro mínimo es de <strong class="text-white">$5.000</strong>.</p>
+            </div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ / OBJECIONES -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20">
+      <div class="reveal text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-3">Información importante</h2>
+        <p class="text-[#c9b8dd] max-w-2xl mx-auto">Lo principal tiene que estar claro antes de escribir, así el mensaje llega con menos dudas.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 sm:gap-5">
+        <article class="faq-card reveal glass rounded-3xl p-5">
+          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cuál es la carga mínima?</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">La carga mínima es de <strong class="text-white">$500</strong>.</p>
+        </article>
+
+        <article class="faq-card reveal glass rounded-3xl p-5">
+          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cuál es el retiro mínimo?</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">El retiro mínimo es de <strong class="text-white">$5.000</strong>.</p>
+        </article>
+
+        <article class="faq-card reveal glass rounded-3xl p-5">
+          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cómo activo el 50%?</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Escribís por WhatsApp, creás tu usuario y pedís el bono de bienvenida para tu primera carga.</p>
+        </article>
+
+        <article class="faq-card reveal glass rounded-3xl p-5">
+          <h3 class="font-black text-[#f3e8ff] mb-2">¿Hay atención?</h3>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Sí, hay atención por WhatsApp las 24 horas para ayudarte con el registro y las cargas.</p>
+        </article>
       </div>
     </section>
   </main>
 
   <!-- CTA FINAL -->
-  <section id="registro" class="py-20 px-6">
-    <div class="max-w-2xl mx-auto bonus-glass p-7 md:p-9 rounded-[34px] text-center reveal">
-      <span class="inline-block mb-4 px-3 py-1 rounded-full bg-[#a855f714] border border-[#a855f733] text-sm text-[#e9d5ff]">
-        Bono de bienvenida
-      </span>
-
-      <h3 class="text-3xl md:text-4xl font-black mb-4">¿Querés activar tu 50% de bonificación ahora?</h3>
-      <p class="text-sm md:text-base text-[#c9b8dd] mb-7 max-w-xl mx-auto">
-        Escribinos por WhatsApp y te ayudamos a crear tu usuario, activar el bono de bienvenida del 50% y hacer tu primera carga automática en minutos.
-      </p>
+  <section id="registro" class="relative px-4 sm:px-6 pb-16 sm:pb-20">
+    <div class="max-w-3xl mx-auto bonus-shell rounded-[30px] p-5 sm:p-8 text-center reveal">
+      <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.07] px-3 py-1 text-sm font-bold text-[#f3e8ff] mb-4">Bono disponible</span>
+      <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] mb-4">Pedí tu usuario y activá el 50%</h2>
+      <p class="text-[#d8c7ee] mb-6 max-w-xl mx-auto">Carga mínima $500 · Retiro mínimo $5.000 · Atención por WhatsApp 24 hs.</p>
 
       <a id="ctaBtnBottom"
-         class="shine-btn inline-flex w-full sm:w-auto items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.36)] hover:scale-105 transition transform"
          href="#"
+         class="shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
          rel="noopener noreferrer">
-        <span id="ctaTextBottom">Cargando...</span>
+        Crear usuario por WhatsApp
       </a>
 
-      <p class="mt-5 text-xs text-[#8f7aa8]">
-        +18 · Promoción para nuevos usuarios · Jugá con responsabilidad.
-      </p>
+      <p class="mt-5 text-xs leading-relaxed text-[#a994c0]">+18 · Promoción para nuevos usuarios · Jugá con responsabilidad.</p>
     </div>
   </section>
 
   <!-- CTA STICKY MOBILE -->
-  <div class="sticky-mobile-cta">
+  <div class="sticky-mobile-cta safe-bottom">
     <a id="ctaBtnSticky"
-       class="shine-btn inline-flex w-full items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-6 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.42)]"
+       class="shine-btn inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 text-sm font-black text-white"
        href="#"
        rel="noopener noreferrer">
-      <span id="ctaTextSticky">Activar 50% de bonificación</span>
+      Crear usuario por WhatsApp
     </a>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="py-8 text-center text-sm text-[#8f7aa8] border-t border-white/5 px-6">
+  <footer class="px-4 sm:px-6 py-8 text-center text-xs sm:text-sm text-[#8f7aa8] border-t border-white/5">
     <p>© 2026 Ganamos · Todos los derechos reservados</p>
-    <p class="mt-2 text-xs">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
+    <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
   </footer>
 
-  <!-- SCRIPT: CTA dinámico + tracking + reveal -->
+  <!-- SCRIPT: WhatsApp dinámico + tracking + reveal -->
   <script>
   (function () {
     const DEFAULT_WA_NUMBERS = ['541124656608'];
@@ -578,21 +507,21 @@
     let nextNumberIndex = getStoredRotationIndex();
 
     const phrases = [
-      "Quiero crear mi usuario y activar el 50% de bonificación 🎁",
-      "Quiero reclamar mi bono de bienvenida del 50% 🚀",
-      "Quiero registrarme y cargar saldo hoy mismo 💸",
-      "Quiero hablar con un asesor para empezar ahora 🕐",
-      "Quiero hacer mi primera carga automática ⚡",
-      "Quiero entrar a Ganamos con mi 50% de bonificación 🎉",
-      "Quiero crear mi cuenta en minutos y empezar hoy 🎮"
+      'Quiero crear mi usuario en Ganamos y activar el 50% de bonificación',
+      'Hola, quiero mi usuario y el bono de bienvenida del 50%',
+      'Quiero registrarme, cargar y empezar hoy',
+      'Hola, quiero información para crear mi cuenta en Ganamos',
+      'Quiero activar el bono del 50% en mi primera carga'
     ];
 
-    const ctaTextEl = document.getElementById('ctaText');
-    const ctaBtnEl = document.getElementById('ctaBtn');
-    const ctaTextBottomEl = document.getElementById('ctaTextBottom');
-    const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
-    const ctaTextStickyEl = document.getElementById('ctaTextSticky');
-    const ctaBtnStickyEl = document.getElementById('ctaBtnSticky');
+    const ctaButtons = [
+      document.getElementById('ctaBtn'),
+      document.getElementById('ctaBtnCard'),
+      document.getElementById('ctaBtnInfo'),
+      document.getElementById('ctaBtnSteps'),
+      document.getElementById('ctaBtnBottom'),
+      document.getElementById('ctaBtnSticky')
+    ].filter(Boolean);
 
     let currentIndex = Math.floor(Math.random() * phrases.length);
 
@@ -652,8 +581,19 @@
 
     function buildWhatsAppHref(phrase, phoneNumber = getCurrentWhatsAppNumber()) {
       const base = 'https://wa.me/' + phoneNumber;
-      const message = `¡Hola! Quiero crear mi usuario en Ganamos y activar el 50% de bonificación. (${phrase})`;
+      const message = `¡Hola! ${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000.`;
       return base + '?text=' + encodeURIComponent(message);
+    }
+
+    function updateCTAs() {
+      const phrase = phrases[currentIndex];
+      const href = buildWhatsAppHref(phrase);
+
+      ctaButtons.forEach(button => {
+        button.setAttribute('href', href);
+        button.dataset.ctaPhrase = phrase;
+        button.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+      });
     }
 
     async function loadWhatsAppNumbers() {
@@ -675,35 +615,7 @@
         console.warn('Usando número de WhatsApp por defecto:', err);
       }
 
-      updateCTAs(currentIndex);
-    }
-
-    function fadeText(el, newText) {
-      if (!el) return;
-      el.classList.add('fade-out');
-      setTimeout(() => {
-        el.textContent = newText;
-        el.classList.remove('fade-out');
-        el.classList.add('fade-in');
-        setTimeout(() => el.classList.remove('fade-in'), 350);
-      }, 180);
-    }
-
-    function updateCTAs(index) {
-      const phrase = phrases[index];
-
-      fadeText(ctaTextEl, phrase);
-      fadeText(ctaTextBottomEl, phrase);
-      fadeText(ctaTextStickyEl, "Activar 50% de bonificación 🎁");
-
-      const waHref = buildWhatsAppHref(phrase);
-
-      [ctaBtnEl, ctaBtnBottomEl, ctaBtnStickyEl].forEach(button => {
-        if (!button) return;
-        button.setAttribute('href', waHref);
-        button.dataset.ctaPhrase = phrase;
-        button.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
-      });
+      updateCTAs();
     }
 
     function attachClickTracking(buttonEl, locationName) {
@@ -714,11 +626,11 @@
         const phoneNumber = getNextWhatsAppNumberForClick();
         buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
 
-        const eventId = 'high_intent_lead_' + locationName + '_' + Date.now();
+        const eventId = 'ganamos_lead_' + locationName + '_' + Date.now();
 
         try {
           fbq('track', 'Lead', {
-            content_name: 'Ganamos WhatsApp CTA - Bono 50%',
+            content_name: 'Ganamos WhatsApp CTA',
             content_category: locationName,
             value: 0,
             currency: 'ARS'
@@ -726,17 +638,19 @@
             eventID: eventId
           });
 
-          fbq('trackCustom', 'HighIntentLead', {
-            content_name: 'Ganamos Bono 50%',
+          fbq('trackCustom', 'WhatsAppLeadGanamos', {
+            content_name: 'Ganamos bono 50',
             content_category: locationName,
-            cta_phrase: phrase
+            cta_phrase: phrase,
+            minimum_deposit: 500,
+            minimum_withdrawal: 5000
           });
         } catch (err) {
           console.warn('fbq error', err);
         }
 
         try {
-          gtag('event', 'lead_whatsapp_ganamos_bono_50', {
+          gtag('event', 'lead_whatsapp_ganamos', {
             event_category: 'engagement',
             event_label: locationName,
             value: 1
@@ -747,26 +661,26 @@
       });
     }
 
-    updateCTAs(currentIndex);
+    updateCTAs();
     loadWhatsAppNumbers();
+
+    ctaButtons.forEach((button, index) => {
+      const locationName = button.id ? button.id.replace('ctaBtn', '').toLowerCase() || 'hero' : 'cta_' + index;
+      attachClickTracking(button, locationName);
+    });
 
     setInterval(() => {
       currentIndex = (currentIndex + 1) % phrases.length;
-      updateCTAs(currentIndex);
-    }, 4500);
+      updateCTAs();
+    }, 9000);
 
-    attachClickTracking(ctaBtnEl, 'hero');
-    attachClickTracking(ctaBtnBottomEl, 'bottom');
-    attachClickTracking(ctaBtnStickyEl, 'sticky_mobile');
-
-    // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   })();
