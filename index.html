@@ -496,12 +496,18 @@
     <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
   </footer>
 
-  <!-- SCRIPT: WhatsApp dinámico + tracking + reveal -->
+  <!-- SCRIPT: WhatsApp dinámico + tracking deduplicado + reveal -->
   <script>
   (function () {
     const DEFAULT_WA_NUMBERS = ['541124656608'];
     const NUMBERS_FILE = './numeros.json';
     const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
+
+    /*
+      Evita que Meta cuente x2, x3 o x4 en una misma visita.
+      El WhatsApp abre siempre, pero el evento Lead se manda una sola vez por sesión.
+    */
+    const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
 
     let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
     let nextNumberIndex = getStoredRotationIndex();
@@ -618,17 +624,37 @@
       updateCTAs();
     }
 
-    function attachClickTracking(buttonEl, locationName) {
-      if (!buttonEl) return;
+    function wasLeadAlreadyTracked() {
+      try {
+        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
+      } catch (err) {
+        return false;
+      }
+    }
 
-      buttonEl.addEventListener('click', function () {
-        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
-        const phoneNumber = getNextWhatsAppNumberForClick();
-        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+    function markLeadAsTracked() {
+      try {
+        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
+      } catch (err) {
+        // Si sessionStorage está bloqueado, no cortamos la apertura de WhatsApp.
+      }
+    }
 
-        const eventId = 'ganamos_lead_' + locationName + '_' + Date.now();
+    function buildEventId(locationName) {
+      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    }
 
-        try {
+    function trackLeadOncePerSession(locationName, phrase) {
+      if (wasLeadAlreadyTracked()) {
+        return;
+      }
+
+      markLeadAsTracked();
+
+      const eventId = buildEventId(locationName);
+
+      try {
+        if (typeof fbq === 'function') {
           fbq('track', 'Lead', {
             content_name: 'Ganamos WhatsApp CTA',
             content_category: locationName,
@@ -643,21 +669,42 @@
             content_category: locationName,
             cta_phrase: phrase,
             minimum_deposit: 500,
-            minimum_withdrawal: 5000
+            minimum_withdrawal: 5000,
+            event_id_reference: eventId
           });
-        } catch (err) {
-          console.warn('fbq error', err);
         }
+      } catch (err) {
+        console.warn('fbq error', err);
+      }
 
-        try {
+      try {
+        if (typeof gtag === 'function') {
           gtag('event', 'lead_whatsapp_ganamos', {
             event_category: 'engagement',
             event_label: locationName,
             value: 1
           });
-        } catch (err) {
-          console.warn('gtag error', err);
         }
+      } catch (err) {
+        console.warn('gtag error', err);
+      }
+    }
+
+    function attachClickTracking(buttonEl, locationName) {
+      if (!buttonEl) return;
+
+      buttonEl.addEventListener('click', function () {
+        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
+        const phoneNumber = getNextWhatsAppNumberForClick();
+
+        /*
+          Importante:
+          Actualizamos el href antes de que el navegador abra WhatsApp.
+          Aunque el lead ya esté trackeado, el botón sigue funcionando normal.
+        */
+        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+
+        trackLeadOncePerSession(locationName, phrase);
       });
     }
 
