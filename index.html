@@ -28,6 +28,7 @@
   fbq('init', '31570808639231746');
   fbq('track', 'PageView');
   </script>
+
   <noscript>
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
@@ -159,6 +160,55 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
+    .wa-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(5, 3, 10, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .wa-modal.show {
+      display: flex;
+    }
+
+    .wa-modal-card {
+      width: 100%;
+      max-width: 470px;
+      border-radius: 30px;
+      border: 1px solid rgba(216, 180, 254, 0.32);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(168, 85, 247, 0.30), transparent 44%),
+        linear-gradient(180deg, rgba(22, 10, 38, 0.98), rgba(9, 5, 18, 0.98));
+      box-shadow: 0 25px 90px rgba(0, 0, 0, 0.48), 0 0 42px rgba(168, 85, 247, 0.18);
+      padding: 22px;
+    }
+
+    .wa-message-preview {
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.055);
+      border-radius: 20px;
+      padding: 14px;
+      color: #e9d5ff;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .wa-close-btn {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f3e8ff;
+    }
+
+    .wa-close-btn:hover {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
     @keyframes shineSweep {
       0% { left: -60%; }
       100% { left: 135%; }
@@ -258,9 +308,10 @@
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
           <a id="ctaBtn"
+             data-wa-trigger="true"
              role="button"
              aria-label="Crear usuario por WhatsApp"
-             href="#"
+             href="#whatsapp"
              class="shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 text-base font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
              rel="noopener noreferrer">
             Crear usuario por WhatsApp
@@ -320,7 +371,8 @@
               </div>
 
               <a id="ctaBtnCard"
-                 href="#"
+                 data-wa-trigger="true"
+                 href="#whatsapp"
                  class="inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-[#160b2a] transition hover:scale-[1.02] active:scale-[0.99]"
                  rel="noopener noreferrer">
                 Pedir mi usuario ahora
@@ -348,7 +400,11 @@
           <p class="text-xs text-[#a996c2]">Mínimo de retiro</p>
           <p class="text-xl font-black text-[#f3e8ff]">$5.000</p>
         </div>
-        <a id="ctaBtnInfo" href="#" class="shine-btn inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 font-black text-white" rel="noopener noreferrer">
+        <a id="ctaBtnInfo"
+           data-wa-trigger="true"
+           href="#whatsapp"
+           class="shine-btn inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 font-black text-white"
+           rel="noopener noreferrer">
           Activar bono
         </a>
       </div>
@@ -375,7 +431,7 @@
         <article class="soft-card reveal glass rounded-3xl p-5 text-left">
           <div class="text-3xl mb-3">📲</div>
           <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Atención por WhatsApp</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás el botón, escribís y te guiamos para crear el usuario.</p>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás el botón, confirmás y te dejamos el mensaje listo para enviar.</p>
         </article>
 
         <article class="soft-card reveal glass rounded-3xl p-5 text-left">
@@ -399,7 +455,11 @@
           <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.05] px-3 py-1 text-sm font-bold text-[#f3e8ff] mb-4">Cómo empezar</span>
           <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-4">En 3 pasos ya estás adentro</h2>
           <p class="text-[#c9b8dd] mb-5">Pensado para que desde el celular sea claro, rápido y sin vueltas.</p>
-          <a id="ctaBtnSteps" href="#" class="hidden sm:inline-flex shine-btn items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-3.5 font-black text-white" rel="noopener noreferrer">
+          <a id="ctaBtnSteps"
+             data-wa-trigger="true"
+             href="#whatsapp"
+             class="hidden sm:inline-flex shine-btn items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-3.5 font-black text-white"
+             rel="noopener noreferrer">
             Quiero mi usuario
           </a>
         </div>
@@ -408,16 +468,16 @@
           <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
             <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">1</div>
             <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Escribís por WhatsApp</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás “Crear usuario” y mandás el mensaje automático.</p>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Tocás el botón</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Te mostramos el mensaje que se va a abrir en WhatsApp.</p>
             </div>
           </article>
 
           <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
             <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">2</div>
             <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Creás tu usuario</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">Un asesor te ayuda a dejar la cuenta lista en pocos minutos.</p>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Confirmás y enviás</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Se abre WhatsApp con el mensaje listo. Solo tenés que tocar <strong class="text-white">enviar</strong>.</p>
             </div>
           </article>
 
@@ -471,7 +531,8 @@
       <p class="text-[#d8c7ee] mb-6 max-w-xl mx-auto">Carga mínima $500 · Retiro mínimo $5.000 · Atención por WhatsApp 24 hs.</p>
 
       <a id="ctaBtnBottom"
-         href="#"
+         data-wa-trigger="true"
+         href="#whatsapp"
          class="shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
          rel="noopener noreferrer">
         Crear usuario por WhatsApp
@@ -484,11 +545,58 @@
   <!-- CTA STICKY MOBILE -->
   <div class="sticky-mobile-cta safe-bottom">
     <a id="ctaBtnSticky"
+       data-wa-trigger="true"
        class="shine-btn inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 text-sm font-black text-white"
-       href="#"
+       href="#whatsapp"
        rel="noopener noreferrer">
       Crear usuario por WhatsApp
     </a>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN WHATSAPP -->
+  <div id="waModal" class="wa-modal" aria-hidden="true">
+    <div class="wa-modal-card">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <p class="text-sm font-black text-[#c4a3ff] mb-1">Último paso</p>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-[-0.035em] text-white">Enviá el mensaje por WhatsApp</h2>
+        </div>
+
+        <button id="waCloseBtn"
+                type="button"
+                class="wa-close-btn h-10 w-10 rounded-2xl flex items-center justify-center font-black"
+                aria-label="Cerrar">
+          ×
+        </button>
+      </div>
+
+      <p class="text-sm leading-relaxed text-[#d8c7ee] mb-4">
+        Te vamos a abrir WhatsApp con el mensaje listo. Cuando se abra, tocá <strong class="text-white">ENVIAR</strong> para que podamos crear tu usuario.
+      </p>
+
+      <div class="wa-message-preview mb-5">
+        <p class="text-xs uppercase tracking-[0.22em] text-[#a996c2] mb-2">Mensaje preparado</p>
+        <p id="waPreviewText">Hola, quiero crear mi usuario y activar el bono.</p>
+      </div>
+
+      <div class="grid gap-3">
+        <button id="waConfirmBtn"
+                type="button"
+                class="shine-btn w-full rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-4 text-base font-black text-white transition active:scale-[0.99]">
+          Abrir WhatsApp y enviar mensaje
+        </button>
+
+        <button id="waCancelBtn"
+                type="button"
+                class="wa-close-btn w-full rounded-2xl px-6 py-3.5 text-sm font-bold">
+          Ahora no
+        </button>
+      </div>
+
+      <p class="mt-4 text-xs leading-relaxed text-[#9f88ba]">
+        Este paso ayuda a evitar clicks accidentales. Solo se cuenta como cliente potencial cuando confirmás abrir WhatsApp.
+      </p>
+    </div>
   </div>
 
   <footer class="px-4 sm:px-6 py-8 text-center text-xs sm:text-sm text-[#8f7aa8] border-t border-white/5">
@@ -496,40 +604,49 @@
     <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
   </footer>
 
-  <!-- SCRIPT: WhatsApp dinámico + tracking deduplicado + reveal -->
+  <!-- SCRIPT: WhatsApp dinámico + SOLO Lead + anti-duplicado + confirmación -->
   <script>
   (function () {
     const DEFAULT_WA_NUMBERS = ['541124656608'];
     const NUMBERS_FILE = './numeros.json';
-    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
 
-    /*
-      Evita que Meta cuente x2, x3 o x4 en una misma visita.
-      El WhatsApp abre siempre, pero el evento Lead se manda una sola vez por sesión.
-    */
+    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
     const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
+    const LEAD_CODE_KEY = 'ganamos_real_message_code';
 
     let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
     let nextNumberIndex = getStoredRotationIndex();
 
+    let currentPhraseIndex = Math.floor(Math.random() * 5);
+    let pendingLocationName = 'hero';
+    let pendingPhrase = '';
+
     const phrases = [
-      'Quiero crear mi usuario en Ganamos y activar el 50% de bonificación',
+      'Hola, quiero crear mi usuario en Ganamos y activar el 50% de bonificación',
       'Hola, quiero mi usuario y el bono de bienvenida del 50%',
-      'Quiero registrarme, cargar y empezar hoy',
+      'Hola, quiero registrarme, cargar y empezar hoy',
       'Hola, quiero información para crear mi cuenta en Ganamos',
-      'Quiero activar el bono del 50% en mi primera carga'
+      'Hola, quiero activar el bono del 50% en mi primera carga'
     ];
 
-    const ctaButtons = [
-      document.getElementById('ctaBtn'),
-      document.getElementById('ctaBtnCard'),
-      document.getElementById('ctaBtnInfo'),
-      document.getElementById('ctaBtnSteps'),
-      document.getElementById('ctaBtnBottom'),
-      document.getElementById('ctaBtnSticky')
-    ].filter(Boolean);
+    const waModal = document.getElementById('waModal');
+    const waPreviewText = document.getElementById('waPreviewText');
+    const waConfirmBtn = document.getElementById('waConfirmBtn');
+    const waCloseBtn = document.getElementById('waCloseBtn');
+    const waCancelBtn = document.getElementById('waCancelBtn');
 
-    let currentIndex = Math.floor(Math.random() * phrases.length);
+    const ctaButtons = Array.from(document.querySelectorAll('[data-wa-trigger="true"]'));
+
+    const pageLoadedAt = Date.now();
+    let hadHumanInteraction = false;
+
+    window.addEventListener('pointerdown', function () {
+      hadHumanInteraction = true;
+    }, { once: true });
+
+    window.addEventListener('keydown', function () {
+      hadHumanInteraction = true;
+    }, { once: true });
 
     function normalizeWhatsAppNumber(value) {
       return String(value || '').replace(/\D/g, '');
@@ -564,9 +681,7 @@
     function saveStoredRotationIndex(index) {
       try {
         localStorage.setItem(ROTATION_KEY, String(index));
-      } catch (err) {
-        // Si el navegador bloquea localStorage, la rotación igual funciona durante la sesión actual.
-      }
+      } catch (err) {}
     }
 
     function getCurrentWhatsAppNumber() {
@@ -578,27 +693,124 @@
       return whatsappNumbers[nextNumberIndex];
     }
 
-    function getNextWhatsAppNumberForClick() {
+    function getNextWhatsAppNumberForConfirmedClick() {
       const number = getCurrentWhatsAppNumber();
       nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
       saveStoredRotationIndex(nextNumberIndex);
       return number;
     }
 
-    function buildWhatsAppHref(phrase, phoneNumber = getCurrentWhatsAppNumber()) {
-      const base = 'https://wa.me/' + phoneNumber;
-      const message = `¡Hola! ${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000.`;
-      return base + '?text=' + encodeURIComponent(message);
+    function getOrCreateLeadCode() {
+      try {
+        const existingCode = sessionStorage.getItem(LEAD_CODE_KEY);
+        if (existingCode) return existingCode;
+
+        const newCode = 'G-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+        sessionStorage.setItem(LEAD_CODE_KEY, newCode);
+        return newCode;
+      } catch (err) {
+        return 'G-' + Date.now().toString(36).toUpperCase();
+      }
     }
 
-    function updateCTAs() {
-      const phrase = phrases[currentIndex];
-      const href = buildWhatsAppHref(phrase);
+    function buildWhatsAppMessage(phrase) {
+      const leadCode = getOrCreateLeadCode();
 
-      ctaButtons.forEach(button => {
-        button.setAttribute('href', href);
-        button.dataset.ctaPhrase = phrase;
-        button.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+      return `${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000. Código: ${leadCode}`;
+    }
+
+    function buildWhatsAppHref(phoneNumber, phrase) {
+      const message = buildWhatsAppMessage(phrase);
+      return 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+    }
+
+    function wasLeadAlreadyTracked() {
+      try {
+        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
+      } catch (err) {
+        return false;
+      }
+    }
+
+    function markLeadAsTracked() {
+      try {
+        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
+      } catch (err) {}
+    }
+
+    function buildEventId(locationName) {
+      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    }
+
+    function trackOnlyMetaLeadOnce(locationName) {
+      if (wasLeadAlreadyTracked()) {
+        return;
+      }
+
+      markLeadAsTracked();
+
+      const eventId = buildEventId(locationName);
+      const leadCode = getOrCreateLeadCode();
+
+      try {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: 'Ganamos WhatsApp Lead',
+            content_category: locationName,
+            lead_code: leadCode,
+            value: 0,
+            currency: 'ARS'
+          }, {
+            eventID: eventId
+          });
+        }
+      } catch (err) {
+        console.warn('fbq Lead error', err);
+      }
+    }
+
+    function getLocationNameFromButton(button, index) {
+      if (!button) return 'cta_' + index;
+
+      const id = button.id || '';
+      const cleaned = id.replace('ctaBtn', '').toLowerCase();
+
+      return cleaned || 'hero';
+    }
+
+    function openWhatsAppModal(locationName, phrase) {
+      pendingLocationName = locationName;
+      pendingPhrase = phrase;
+
+      if (waPreviewText) {
+        waPreviewText.textContent = buildWhatsAppMessage(phrase);
+      }
+
+      if (waModal) {
+        waModal.classList.add('show');
+        waModal.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function closeWhatsAppModal() {
+      if (waModal) {
+        waModal.classList.remove('show');
+        waModal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function attachCTAEvents() {
+      ctaButtons.forEach((button, index) => {
+        const locationName = getLocationNameFromButton(button, index);
+
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+          const phrase = phrases[currentPhraseIndex];
+
+          openWhatsAppModal(locationName, phrase);
+        });
       });
     }
 
@@ -620,106 +832,60 @@
       } catch (err) {
         console.warn('Usando número de WhatsApp por defecto:', err);
       }
-
-      updateCTAs();
     }
 
-    function wasLeadAlreadyTracked() {
-      try {
-        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
-      } catch (err) {
-        return false;
-      }
-    }
-
-    function markLeadAsTracked() {
-      try {
-        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
-      } catch (err) {
-        // Si sessionStorage está bloqueado, no cortamos la apertura de WhatsApp.
-      }
-    }
-
-    function buildEventId(locationName) {
-      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-    }
-
-    function trackLeadOncePerSession(locationName, phrase) {
-      if (wasLeadAlreadyTracked()) {
-        return;
-      }
-
-      markLeadAsTracked();
-
-      const eventId = buildEventId(locationName);
-
-      try {
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            content_name: 'Ganamos WhatsApp CTA',
-            content_category: locationName,
-            value: 0,
-            currency: 'ARS'
-          }, {
-            eventID: eventId
-          });
-
-          fbq('trackCustom', 'WhatsAppLeadGanamos', {
-            content_name: 'Ganamos bono 50',
-            content_category: locationName,
-            cta_phrase: phrase,
-            minimum_deposit: 500,
-            minimum_withdrawal: 5000,
-            event_id_reference: eventId
-          });
+    if (waConfirmBtn) {
+      waConfirmBtn.addEventListener('click', function (event) {
+        if (event.isTrusted === false) {
+          return;
         }
-      } catch (err) {
-        console.warn('fbq error', err);
-      }
 
-      try {
-        if (typeof gtag === 'function') {
-          gtag('event', 'lead_whatsapp_ganamos', {
-            event_category: 'engagement',
-            event_label: locationName,
-            value: 1
-          });
-        }
-      } catch (err) {
-        console.warn('gtag error', err);
-      }
-    }
-
-    function attachClickTracking(buttonEl, locationName) {
-      if (!buttonEl) return;
-
-      buttonEl.addEventListener('click', function () {
-        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
-        const phoneNumber = getNextWhatsAppNumberForClick();
+        const timeOnPageMs = Date.now() - pageLoadedAt;
 
         /*
-          Importante:
-          Actualizamos el href antes de que el navegador abra WhatsApp.
-          Aunque el lead ya esté trackeado, el botón sigue funcionando normal.
+          Filtro suave anti-bot:
+          - Debe venir de una interacción real.
+          - Debe haber pasado un mínimo de tiempo desde que cargó la página.
+          No bloquea WhatsApp a usuarios reales, pero evita contar scripts automáticos como Lead.
         */
-        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+        const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
 
-        trackLeadOncePerSession(locationName, phrase);
+        const phoneNumber = getNextWhatsAppNumberForConfirmedClick();
+        const whatsappHref = buildWhatsAppHref(phoneNumber, pendingPhrase || phrases[0]);
+
+        if (shouldTrackLead) {
+          trackOnlyMetaLeadOnce(pendingLocationName);
+        }
+
+        closeWhatsAppModal();
+
+        setTimeout(function () {
+          window.location.href = whatsappHref;
+        }, 160);
       });
     }
 
-    updateCTAs();
-    loadWhatsAppNumbers();
+    if (waCloseBtn) {
+      waCloseBtn.addEventListener('click', closeWhatsAppModal);
+    }
 
-    ctaButtons.forEach((button, index) => {
-      const locationName = button.id ? button.id.replace('ctaBtn', '').toLowerCase() || 'hero' : 'cta_' + index;
-      attachClickTracking(button, locationName);
+    if (waCancelBtn) {
+      waCancelBtn.addEventListener('click', closeWhatsAppModal);
+    }
+
+    if (waModal) {
+      waModal.addEventListener('click', function (event) {
+        if (event.target === waModal) {
+          closeWhatsAppModal();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeWhatsAppModal();
+      }
     });
-
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % phrases.length;
-      updateCTAs();
-    }, 9000);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -730,6 +896,9 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    attachCTAEvents();
+    loadWhatsAppNumbers();
   })();
   </script>
 </body>
