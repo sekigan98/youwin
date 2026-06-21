@@ -127,6 +127,16 @@
       z-index: -1;
     }
 
+    .wa-confirm-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .wa-confirm-btn:disabled::before {
+      display: none;
+    }
+
     .soft-card,
     .faq-card,
     .step-card {
@@ -197,6 +207,23 @@
       color: #e9d5ff;
       font-size: 14px;
       line-height: 1.5;
+    }
+
+    .wa-status-text {
+      border-radius: 18px;
+      padding: 11px 13px;
+      font-size: 13px;
+      line-height: 1.45;
+      margin-bottom: 14px;
+      border: 1px solid rgba(216, 180, 254, 0.22);
+      background: rgba(255, 255, 255, 0.055);
+      color: #d8c7ee;
+    }
+
+    .wa-status-text.error {
+      border-color: rgba(248, 113, 113, 0.34);
+      background: rgba(127, 29, 29, 0.22);
+      color: #fecaca;
     }
 
     .wa-close-btn {
@@ -431,7 +458,7 @@
         <article class="soft-card reveal glass rounded-3xl p-5 text-left">
           <div class="text-3xl mb-3">📲</div>
           <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Atención por WhatsApp</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás el botón, confirmás y te dejamos el mensaje listo para enviar.</p>
+          <p class="text-sm leading-relaxed text-[#d8c7ee]">Tocás el botón, se abre WhatsApp y enviás el mensaje preparado.</p>
         </article>
 
         <article class="soft-card reveal glass rounded-3xl p-5 text-left">
@@ -476,8 +503,8 @@
           <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
             <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">2</div>
             <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Confirmás y enviás</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">Se abre WhatsApp con el mensaje listo. Solo tenés que tocar <strong class="text-white">enviar</strong>.</p>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Abrís WhatsApp</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Se abre WhatsApp con el mensaje listo. Solo tenés que tocar <strong class="text-white">ENVIAR</strong>.</p>
             </div>
           </article>
 
@@ -559,7 +586,7 @@
       <div class="flex items-start justify-between gap-4 mb-4">
         <div>
           <p class="text-sm font-black text-[#c4a3ff] mb-1">Último paso</p>
-          <h2 class="text-2xl sm:text-3xl font-black tracking-[-0.035em] text-white">Enviá el mensaje por WhatsApp</h2>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-[-0.035em] text-white">Abrí WhatsApp y tocá enviar</h2>
         </div>
 
         <button id="waCloseBtn"
@@ -571,7 +598,7 @@
       </div>
 
       <p class="text-sm leading-relaxed text-[#d8c7ee] mb-4">
-        Te vamos a abrir WhatsApp con el mensaje listo. Cuando se abra, tocá <strong class="text-white">ENVIAR</strong> para que podamos crear tu usuario.
+        Te vamos a abrir WhatsApp con el mensaje listo. Cuando se abra, tocá <strong class="text-white">ENVIAR</strong> para que podamos crear tu usuario y activar el bono.
       </p>
 
       <div class="wa-message-preview mb-5">
@@ -579,11 +606,13 @@
         <p id="waPreviewText">Hola, quiero crear mi usuario y activar el bono.</p>
       </div>
 
+      <p id="waStatusText" class="wa-status-text hidden"></p>
+
       <div class="grid gap-3">
         <button id="waConfirmBtn"
                 type="button"
-                class="shine-btn w-full rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-4 text-base font-black text-white transition active:scale-[0.99]">
-          Abrir WhatsApp y enviar mensaje
+                class="wa-confirm-btn shine-btn w-full rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-4 text-base font-black text-white transition active:scale-[0.99]">
+          Abrir WhatsApp
         </button>
       </div>
     </div>
@@ -594,18 +623,27 @@
     <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
   </footer>
 
-  <!-- SCRIPT: WhatsApp dinámico + SOLO Lead + anti-duplicado + confirmación -->
+  <!-- SCRIPT: WhatsApp desde JSON + Lead Meta + anti-duplicado + confirmación -->
   <script>
   (function () {
-    const DEFAULT_WA_NUMBERS = ['541124656608'];
+    /*
+      IMPORTANTE:
+      - Esta landing NO usa número default.
+      - Solo usa los números cargados en ./numeros.json.
+      - Si numeros.json falla, está vacío o no tiene números válidos, NO dispara Lead y NO abre WhatsApp.
+    */
+
     const NUMBERS_FILE = './numeros.json';
 
     const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
     const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
     const LEAD_CODE_KEY = 'ganamos_real_message_code';
 
-    let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+    let whatsappNumbers = [];
     let nextNumberIndex = getStoredRotationIndex();
+
+    let numbersLoaded = false;
+    let numbersLoadError = '';
 
     let currentPhraseIndex = Math.floor(Math.random() * 5);
     let pendingLocationName = 'hero';
@@ -623,6 +661,7 @@
     const waPreviewText = document.getElementById('waPreviewText');
     const waConfirmBtn = document.getElementById('waConfirmBtn');
     const waCloseBtn = document.getElementById('waCloseBtn');
+    const waStatusText = document.getElementById('waStatusText');
 
     const ctaButtons = Array.from(document.querySelectorAll('[data-wa-trigger="true"]'));
 
@@ -673,9 +712,13 @@
       } catch (err) {}
     }
 
+    function hasAvailableWhatsAppNumbers() {
+      return numbersLoaded && whatsappNumbers.length > 0;
+    }
+
     function getCurrentWhatsAppNumber() {
       if (!whatsappNumbers.length) {
-        whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+        return null;
       }
 
       nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
@@ -684,8 +727,14 @@
 
     function getNextWhatsAppNumberForConfirmedClick() {
       const number = getCurrentWhatsAppNumber();
+
+      if (!number) {
+        return null;
+      }
+
       nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
       saveStoredRotationIndex(nextNumberIndex);
+
       return number;
     }
 
@@ -758,6 +807,22 @@
       }
     }
 
+    function trackWhatsAppOpenConfirmed(locationName) {
+      const leadCode = getOrCreateLeadCode();
+
+      try {
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'WhatsAppOpenConfirmed', {
+            content_name: 'Ganamos WhatsApp Open Confirmed',
+            content_category: locationName,
+            lead_code: leadCode
+          });
+        }
+      } catch (err) {
+        console.warn('fbq custom event error', err);
+      }
+    }
+
     function getLocationNameFromButton(button, index) {
       if (!button) return 'cta_' + index;
 
@@ -767,6 +832,48 @@
       return cleaned || 'hero';
     }
 
+    function setWhatsAppStatus(message, type) {
+      if (!waStatusText) return;
+
+      if (!message) {
+        waStatusText.textContent = '';
+        waStatusText.classList.add('hidden');
+        waStatusText.classList.remove('error');
+        return;
+      }
+
+      waStatusText.textContent = message;
+      waStatusText.classList.remove('hidden');
+
+      if (type === 'error') {
+        waStatusText.classList.add('error');
+      } else {
+        waStatusText.classList.remove('error');
+      }
+    }
+
+    function updateConfirmButtonState() {
+      if (!waConfirmBtn) return;
+
+      if (!numbersLoaded) {
+        waConfirmBtn.disabled = true;
+        waConfirmBtn.textContent = 'Cargando WhatsApp...';
+        setWhatsAppStatus('Estamos preparando el contacto de WhatsApp. Tocá nuevamente en unos segundos.', 'info');
+        return;
+      }
+
+      if (!whatsappNumbers.length) {
+        waConfirmBtn.disabled = true;
+        waConfirmBtn.textContent = 'WhatsApp no disponible';
+        setWhatsAppStatus(numbersLoadError || 'No se encontraron números disponibles en numeros.json.', 'error');
+        return;
+      }
+
+      waConfirmBtn.disabled = false;
+      waConfirmBtn.textContent = 'Abrir WhatsApp';
+      setWhatsAppStatus('', 'info');
+    }
+
     function openWhatsAppModal(locationName, phrase) {
       pendingLocationName = locationName;
       pendingPhrase = phrase;
@@ -774,6 +881,8 @@
       if (waPreviewText) {
         waPreviewText.textContent = buildWhatsAppMessage(phrase);
       }
+
+      updateConfirmButtonState();
 
       if (waModal) {
         waModal.classList.add('show');
@@ -814,12 +923,20 @@
         const data = await response.json();
         const loadedNumbers = normalizeWhatsAppNumbers(data);
 
-        if (loadedNumbers.length) {
-          whatsappNumbers = loadedNumbers;
-          nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        if (!loadedNumbers.length) {
+          throw new Error('El archivo numeros.json no tiene números válidos.');
         }
+
+        whatsappNumbers = loadedNumbers;
+        nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        numbersLoadError = '';
       } catch (err) {
-        console.warn('Usando número de WhatsApp por defecto:', err);
+        whatsappNumbers = [];
+        numbersLoadError = 'No se pudieron cargar los números de WhatsApp desde numeros.json. Revisá que el archivo exista, tenga números válidos y esté publicado correctamente.';
+        console.warn('WhatsApp JSON error:', err);
+      } finally {
+        numbersLoaded = true;
+        updateConfirmButtonState();
       }
     }
 
@@ -829,22 +946,31 @@
           return;
         }
 
-        const timeOnPageMs = Date.now() - pageLoadedAt;
-
-        const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
+        if (!hasAvailableWhatsAppNumbers()) {
+          updateConfirmButtonState();
+          return;
+        }
 
         const phoneNumber = getNextWhatsAppNumberForConfirmedClick();
+
+        if (!phoneNumber) {
+          updateConfirmButtonState();
+          return;
+        }
+
+        const timeOnPageMs = Date.now() - pageLoadedAt;
+        const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
+
         const whatsappHref = buildWhatsAppHref(phoneNumber, pendingPhrase || phrases[0]);
 
         if (shouldTrackLead) {
           trackOnlyMetaLeadOnce(pendingLocationName);
+          trackWhatsAppOpenConfirmed(pendingLocationName);
         }
 
         closeWhatsAppModal();
 
-        setTimeout(function () {
-          window.location.href = whatsappHref;
-        }, 160);
+        window.location.href = whatsappHref;
       });
     }
 
