@@ -585,17 +585,7 @@
                 class="shine-btn w-full rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-4 text-base font-black text-white transition active:scale-[0.99]">
           Abrir WhatsApp y enviar mensaje
         </button>
-
-        <button id="waCancelBtn"
-                type="button"
-                class="wa-close-btn w-full rounded-2xl px-6 py-3.5 text-sm font-bold">
-          Ahora no
-        </button>
       </div>
-
-      <p class="mt-4 text-xs leading-relaxed text-[#9f88ba]">
-        Este paso ayuda a evitar clicks accidentales. Solo se cuenta como cliente potencial cuando confirmás abrir WhatsApp.
-      </p>
     </div>
   </div>
 
@@ -633,7 +623,6 @@
     const waPreviewText = document.getElementById('waPreviewText');
     const waConfirmBtn = document.getElementById('waConfirmBtn');
     const waCloseBtn = document.getElementById('waCloseBtn');
-    const waCancelBtn = document.getElementById('waCancelBtn');
 
     const ctaButtons = Array.from(document.querySelectorAll('[data-wa-trigger="true"]'));
 
@@ -716,7 +705,7 @@
     function buildWhatsAppMessage(phrase) {
       const leadCode = getOrCreateLeadCode();
 
-      return `${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000. Código: ${leadCode}`;
+      return `${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000. Mi Código de descuento es: ${leadCode}`;
     }
 
     function buildWhatsAppHref(phoneNumber, phrase) {
@@ -842,12 +831,6 @@
 
         const timeOnPageMs = Date.now() - pageLoadedAt;
 
-        /*
-          Filtro suave anti-bot:
-          - Debe venir de una interacción real.
-          - Debe haber pasado un mínimo de tiempo desde que cargó la página.
-          No bloquea WhatsApp a usuarios reales, pero evita contar scripts automáticos como Lead.
-        */
         const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
 
         const phoneNumber = getNextWhatsAppNumberForConfirmedClick();
@@ -867,10 +850,6 @@
 
     if (waCloseBtn) {
       waCloseBtn.addEventListener('click', closeWhatsAppModal);
-    }
-
-    if (waCancelBtn) {
-      waCancelBtn.addEventListener('click', closeWhatsAppModal);
     }
 
     if (waModal) {
