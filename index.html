@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QF271E9TVW"></script>
@@ -28,14 +28,18 @@
   fbq('init', '31570808639231746');
   fbq('track', 'PageView');
   </script>
+
   <noscript>
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
+      alt=""
     />
   </noscript>
   <!-- End Meta Pixel Code -->
 
-  <title>Ganamos</title>
+  <title>Ganamos | 50% extra en tu primera carga</title>
+  <meta name="description" content="Creá tu usuario en Ganamos por WhatsApp y reclamá 50% extra en tu primera carga. Carga mínima $500, retiro mínimo $5.000 y atención 24 horas." />
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -52,10 +56,18 @@
     }
 
     * {
+      box-sizing: border-box;
       scroll-behavior: smooth;
     }
 
+    html,
     body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
       background:
         radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.18), transparent 35%),
         radial-gradient(circle at 80% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
@@ -159,6 +171,12 @@
       z-index: 1;
     }
 
+    .wa-disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
+      pointer-events: auto;
+    }
+
     .benefit-card {
       transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
     }
@@ -196,6 +214,22 @@
       animation: pulseGlow 2.2s ease-in-out infinite;
     }
 
+    .promo-box {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.18), transparent 35%),
+        linear-gradient(135deg, rgba(168,85,247,0.38), rgba(22,10,38,0.92) 55%, rgba(124,58,237,0.30));
+      border: 1px solid rgba(233,213,255,0.28);
+      box-shadow: 0 24px 80px rgba(168, 85, 247, 0.22);
+    }
+
+    .sticky-mobile-cta {
+      display: none;
+    }
+
+    .safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
     @keyframes floatY {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-14px); }
@@ -214,6 +248,36 @@
         box-shadow: 0 0 0 12px rgba(168, 85, 247, 0);
       }
     }
+
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 94px;
+      }
+
+      header {
+        min-height: auto;
+      }
+
+      .sticky-mobile-cta {
+        display: block;
+        position: fixed;
+        z-index: 60;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
   </style>
 </head>
 
@@ -228,79 +292,109 @@
   <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="hero-grid absolute inset-0 opacity-40"></div>
 
-    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 py-12 md:py-16 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
       <!-- Texto -->
       <div class="text-center lg:text-left reveal">
         <span class="pulse-badge inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full border border-[#a855f733] bg-[#160b2a]/80 text-sm text-[#e9d5ff]">
-          Plataforma online segura · Atención 24hs
+          🎁 50% extra en tu primera carga · Atención 24hs
         </span>
 
         <img
           src="https://ganamosnet.club/img/src/components/Logo/img/logo-net-new.png"
           alt="Logo Ganamos"
-          class="mx-auto lg:mx-0 mb-8 w-72 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.24)]"
+          class="mx-auto lg:mx-0 mb-7 w-64 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.24)]"
         />
 
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
-          Viví la experiencia
-          <span class="bg-gradient-to-r from-[#e9d5ff] via-[#a855f7] to-[#7c3aed] bg-clip-text text-transparent">
-            Ganamos
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-[0.98] tracking-[-0.045em] mb-5">
+          Reclamá tu
+          <span class="block bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent">
+            50% extra
           </span>
-          online
+          por WhatsApp
         </h1>
 
-        <p class="text-lg md:text-xl text-[#c9b8dd] mb-8 max-w-2xl mx-auto lg:mx-0">
-          Disfrutá una plataforma confiable con +2000 juegos, atención personalizada las 24 horas
-          y bono de bienvenida para empezar con todo.
+        <p class="text-lg md:text-xl text-[#c9b8dd] mb-6 max-w-2xl mx-auto lg:mx-0">
+          Creá tu usuario en segundos, activá el bono de bienvenida y empezá hoy con atención personalizada las 24 horas.
         </p>
+
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-7 max-w-xl mx-auto lg:mx-0">
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Carga mín.</p>
+            <p class="text-sm sm:text-lg font-black text-white">$500</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Retiro mín.</p>
+            <p class="text-sm sm:text-lg font-black text-white">$5.000</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.06] px-2.5 py-3 text-center">
+            <p class="text-[11px] sm:text-xs text-[#a996c2]">Atención</p>
+            <p class="text-sm sm:text-lg font-black text-white">24 hs</p>
+          </div>
+        </div>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
           <a id="ctaBtn"
+             data-wa-trigger="true"
              role="button"
-             aria-label="Ir a WhatsApp"
+             aria-label="Reclamar bono por WhatsApp"
              href="#"
-             class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
+             class="shine-btn wa-disabled inline-flex w-full sm:w-auto items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-4 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-[1.03] transition transform"
              rel="noopener noreferrer">
-            <span id="ctaText">Cargando...</span>
+            <span id="ctaText" class="fade-text">Cargando WhatsApp...</span>
           </a>
 
           <a id="ctaSmall"
              href="#registro"
-             class="inline-flex items-center justify-center border border-[#a855f733] bg-[#160b2a]/70 px-5 py-3 rounded-2xl text-sm text-[#f5edff] hover:bg-[#24113d] transition">
-            Más información
+             class="inline-flex w-full sm:w-auto items-center justify-center border border-[#a855f733] bg-[#160b2a]/70 px-5 py-4 rounded-2xl text-sm font-bold text-[#f5edff] hover:bg-[#24113d] transition">
+            Ver la promo
           </a>
         </div>
 
-        <p class="mt-6 text-sm text-[#9a86b8]">
-          Hecho para quienes buscan una experiencia distinta.
+        <p id="waStatus" class="mt-4 text-sm text-[#9a86b8]">
+          Preparando contacto de WhatsApp...
+        </p>
+
+        <p class="mt-4 text-xs leading-relaxed text-[#9a86b8]">
+          Promoción para nuevos usuarios. Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.
         </p>
       </div>
 
       <!-- Visual -->
       <div class="relative reveal">
-        <div class="glass rounded-[32px] p-5 md:p-6">
-          <div class="rounded-[26px] border border-white/5 bg-gradient-to-br from-[#150b24] to-[#090512] p-6">
-            <div class="flex items-center justify-between mb-5">
+        <div class="promo-box rounded-[32px] p-4 md:p-5">
+          <div class="rounded-[26px] border border-white/10 bg-gradient-to-br from-[#150b24] to-[#090512] p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-4 mb-5">
               <div>
-                <p class="text-sm text-[#c4a3ff]">Panel Ganamos</p>
-                <h3 class="text-2xl font-bold text-white">Acceso inmediato</h3>
+                <p class="text-sm text-[#c4a3ff] font-bold">Bono de bienvenida</p>
+                <h3 class="text-2xl sm:text-3xl font-black text-white">Primera carga</h3>
               </div>
-              <div class="h-3 w-3 rounded-full bg-[#a855f7] shadow-[0_0_20px_rgba(60,242,208,0.8)]"></div>
+              <div class="rounded-full border border-[#e9d5ff33] bg-white/[0.07] px-3 py-1 text-xs font-bold text-[#f3e8ff]">
+                Activo
+              </div>
+            </div>
+
+            <div class="rounded-[26px] border border-[#e9d5ff24] bg-gradient-to-br from-[#1a0b2f] to-[#0b0615] p-5 text-center mb-4">
+              <p class="text-xs uppercase tracking-[0.26em] text-[#c9b8dd]">Recibís</p>
+              <div class="text-7xl sm:text-8xl font-black leading-none bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent drop-shadow-[0_0_28px_rgba(233,213,255,0.18)]">
+                +50%
+              </div>
+              <p class="mt-2 text-lg font-black">en tu primera carga</p>
+              <p class="mt-1 text-sm text-[#bda9d6]">Sin tope máximo informado</p>
             </div>
 
             <div class="grid gap-4">
               <div class="mock-card glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
-                    <p class="text-sm text-[#b9a4d8]">Bono de bienvenida</p>
-                    <p class="text-xl font-bold text-[#e9d5ff]">+50% De bonificacion en tu primera vez sin tope maximo</p>
+                    <p class="text-sm text-[#b9a4d8]">Ejemplo rápido</p>
+                    <p class="text-xl font-black text-[#e9d5ff]">Cargás $500 → recibís $750</p>
                   </div>
                   <span class="text-2xl">🎁</span>
                 </div>
               </div>
 
               <div class="mock-card delay-1 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
                     <p class="text-sm text-[#b9a4d8]">Juegos disponibles</p>
                     <p class="text-xl font-bold text-white">Más de 2000 opciones</p>
@@ -310,7 +404,7 @@
               </div>
 
               <div class="mock-card delay-2 glass rounded-2xl p-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between gap-4">
                   <div>
                     <p class="text-sm text-[#b9a4d8]">Atención personalizada</p>
                     <p class="text-xl font-bold text-white">Disponible 24/7</p>
@@ -321,7 +415,7 @@
             </div>
 
             <div class="mt-5 rounded-2xl border border-[#a855f722] bg-[#10091c] px-4 py-3 text-sm text-[#d8c7ff]">
-              Registrate en segundos y empezá hoy mismo.
+              Tocá el botón, se abre WhatsApp y enviás el mensaje preparado con tu código.
             </div>
           </div>
         </div>
@@ -330,29 +424,29 @@
   </header>
 
   <!-- BENEFICIOS -->
-  <main class="relative py-20">
-    <section class="max-w-6xl mx-auto px-6 text-center">
+  <main class="relative py-16 md:py-20">
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 text-center">
       <div class="reveal">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué elegir Ganamos?</h2>
         <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-10">
-          Todo lo que necesitás para jugar con confianza, comodidad y soporte real.
+          Todo lo que necesitás para crear tu usuario rápido, activar el bono y recibir ayuda real por WhatsApp.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">🎮</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">+2000 juegos online</h3>
+          <div class="text-3xl mb-4">🎁</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">50% extra</h3>
           <p class="text-[#d4c4ea]">
-            Accedé a una plataforma estable y completa, con variedad para todos los gustos.
+            Activá el bono de bienvenida y recibí saldo extra en tu primera carga.
           </p>
         </div>
 
         <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
-          <div class="text-3xl mb-4">🎁</div>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Bono de bienvenida</h3>
+          <div class="text-3xl mb-4">⚡</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Registro rápido</h3>
           <p class="text-[#d4c4ea]">
-            Empezá con una promo especial para nuevos usuarios y aprovechá tus primeros movimientos.
+            Tocás el botón, se abre WhatsApp y enviás el mensaje listo con tu código de descuento.
           </p>
         </div>
 
@@ -365,65 +459,154 @@
         </div>
       </div>
     </section>
+
+    <!-- PASOS -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-6 pt-16 md:pt-20">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-10 items-start">
+        <div class="reveal lg:sticky lg:top-8">
+          <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.05] px-3 py-1 text-sm font-bold text-[#f3e8ff] mb-4">
+            Cómo empezar
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-4">
+            En 3 pasos ya estás adentro
+          </h2>
+          <p class="text-[#c9b8dd] mb-5">
+            Directo desde el celular, sin vueltas y con el mensaje ya preparado.
+          </p>
+        </div>
+
+        <div class="grid gap-4">
+          <article class="benefit-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">1</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Tocás el botón</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">El botón prepara el WhatsApp con tu código de descuento.</p>
+            </div>
+          </article>
+
+          <article class="benefit-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">2</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Enviás el mensaje</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Cuando se abra WhatsApp, tocá <strong class="text-white">ENVIAR</strong> para reclamar la promo.</p>
+            </div>
+          </article>
+
+          <article class="benefit-card reveal glass rounded-3xl p-5 flex gap-4">
+            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">3</div>
+            <div>
+              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Activás el bono</h3>
+              <p class="text-sm leading-relaxed text-[#d8c7ee]">Carga mínima <strong class="text-white">$500</strong> y retiro mínimo <strong class="text-white">$5.000</strong>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- FORMULARIO / CTA FINAL -->
-  <section id="registro" class="py-20 px-6">
-    <div class="max-w-xl mx-auto glass p-8 rounded-[30px] text-center reveal">
+  <!-- CTA FINAL -->
+  <section id="registro" class="py-16 md:py-20 px-5 sm:px-6">
+    <div class="max-w-xl mx-auto promo-box p-6 sm:p-8 rounded-[30px] text-center reveal">
       <span class="inline-block mb-4 px-3 py-1 rounded-full bg-[#a855f714] border border-[#a855f733] text-sm text-[#e9d5ff]">
-        Acceso rápido
+        Bono disponible
       </span>
 
-      <h3 class="text-3xl font-bold mb-4">¿Querés empezar ahora?</h3>
-      <p class="text-sm md:text-base text-[#c9b8dd] mb-7">
-        Escribinos por WhatsApp y recibí atención personalizada para crear tu usuario y conocer la plataforma.
+      <h3 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-4">
+        Pedí tu usuario y activá el 50%
+      </h3>
+
+      <p class="text-sm md:text-base text-[#d8c7ee] mb-7">
+        Escribinos por WhatsApp, enviá el código de descuento y recibí atención personalizada para crear tu usuario.
       </p>
 
       <a id="ctaBtnBottom"
-         class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
+         data-wa-trigger="true"
+         class="shine-btn wa-disabled inline-flex w-full sm:w-auto items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-4 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-[1.03] transition transform"
          href="#"
          rel="noopener noreferrer">
-        <span id="ctaTextBottom">Cargando...</span>
+        <span id="ctaTextBottom" class="fade-text">Cargando WhatsApp...</span>
       </a>
+
+      <p class="mt-5 text-xs leading-relaxed text-[#a994c0]">
+        +18 · Promoción para nuevos usuarios · Jugá con responsabilidad.
+      </p>
     </div>
   </section>
 
+  <!-- CTA STICKY MOBILE -->
+  <div class="sticky-mobile-cta safe-bottom">
+    <a id="ctaBtnSticky"
+       data-wa-trigger="true"
+       class="shine-btn wa-disabled inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 text-sm font-black text-white"
+       href="#"
+       rel="noopener noreferrer">
+      <span id="ctaTextSticky" class="fade-text">Cargando WhatsApp...</span>
+    </a>
+  </div>
+
   <!-- FOOTER -->
   <footer class="py-8 text-center text-sm text-[#8f7aa8] border-t border-white/5">
-    © 2026 Ganamos · Todos los derechos reservados
+    <p>© 2026 Ganamos · Todos los derechos reservados</p>
+    <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
   </footer>
 
-  <!-- SCRIPT: CTA dinámico + tracking + reveal -->
+  <!-- SCRIPT: WhatsApp desde JSON + mensaje con código + Lead Meta + rotación -->
   <script>
   (function () {
-    const DEFAULT_WA_NUMBERS = ['541124656608'];
-    const NUMBERS_FILE = './numeros.json';
-    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
+    /*
+      IMPORTANTE:
+      - No hay número default.
+      - Solo se usan los números publicados en ./numeros.json.
+      - Si numeros.json falla, está vacío o tiene números inválidos, no se dispara Lead y no se abre WhatsApp.
+    */
 
-    let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+    const NUMBERS_FILE = './numeros.json';
+
+    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
+    const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
+    const LEAD_CODE_KEY = 'ganamos_real_message_code';
+
+    let whatsappNumbers = [];
     let nextNumberIndex = getStoredRotationIndex();
 
-    const phrases = [
-      "Quiero crear mi usuario gratis 🍀",
-      "Mostrame los juegos disponibles 🎮",
-      "Estoy listo para empezar con $500 💸",
-      "Quiero aprovechar el bono de bienvenida 🎁",
-      "Contame cómo funciona Ganamos 🔍",
-      "Quiero saber cómo cargar y retirar 💰",
-      "Estoy buscando juegos confiables 👀",
-      "Quiero jugar hoy mismo 🕹️",
-      "Mostrame cómo registrarme en segundos ⚡",
-      "Quiero atención personalizada ahora 🕐",
-      "Estoy interesado en la promo de bienvenida 🎉",
-      "Quiero entrar a Ganamos 🚀"
-    ];
+    let numbersLoaded = false;
+    let numbersLoadError = '';
+
+    const ctaButtons = Array.from(document.querySelectorAll('[data-wa-trigger="true"]'));
 
     const ctaTextEl = document.getElementById('ctaText');
-    const ctaBtnEl = document.getElementById('ctaBtn');
     const ctaTextBottomEl = document.getElementById('ctaTextBottom');
-    const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
+    const ctaTextStickyEl = document.getElementById('ctaTextSticky');
+    const waStatusEl = document.getElementById('waStatus');
 
-    let currentIndex = Math.floor(Math.random() * phrases.length);
+    const pageLoadedAt = Date.now();
+    let hadHumanInteraction = false;
+
+    const ctaTexts = [
+      'Reclamar 50% extra por WhatsApp',
+      'Quiero mi usuario con 50% extra',
+      'Activar bono de bienvenida',
+      'Pedir mi usuario ahora',
+      'Crear usuario por WhatsApp'
+    ];
+
+    const messagePhrases = [
+      'Hola, quiero crear mi usuario en Ganamos y activar el 50% de bonificación',
+      'Hola, quiero mi usuario y el bono de bienvenida del 50%',
+      'Hola, quiero registrarme, cargar y empezar hoy',
+      'Hola, quiero activar el bono del 50% en mi primera carga',
+      'Hola, quiero reclamar la promo de bienvenida del 50%'
+    ];
+
+    let currentIndex = Math.floor(Math.random() * ctaTexts.length);
+
+    window.addEventListener('pointerdown', function () {
+      hadHumanInteraction = true;
+    }, { once: true });
+
+    window.addEventListener('keydown', function () {
+      hadHumanInteraction = true;
+    }, { once: true });
 
     function normalizeWhatsAppNumber(value) {
       return String(value || '').replace(/\D/g, '');
@@ -458,14 +641,29 @@
     function saveStoredRotationIndex(index) {
       try {
         localStorage.setItem(ROTATION_KEY, String(index));
+      } catch (err) {}
+    }
+
+    function getOrCreateLeadCode() {
+      try {
+        const existingCode = sessionStorage.getItem(LEAD_CODE_KEY);
+        if (existingCode) return existingCode;
+
+        const newCode = 'G-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+        sessionStorage.setItem(LEAD_CODE_KEY, newCode);
+        return newCode;
       } catch (err) {
-        // Si el navegador bloquea localStorage, la rotación igual funciona durante la sesión actual.
+        return 'G-' + Date.now().toString(36).toUpperCase();
       }
+    }
+
+    function hasAvailableWhatsAppNumbers() {
+      return numbersLoaded && whatsappNumbers.length > 0;
     }
 
     function getCurrentWhatsAppNumber() {
       if (!whatsappNumbers.length) {
-        whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+        return null;
       }
 
       nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
@@ -474,15 +672,185 @@
 
     function getNextWhatsAppNumberForClick() {
       const number = getCurrentWhatsAppNumber();
+
+      if (!number) {
+        return null;
+      }
+
       nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
       saveStoredRotationIndex(nextNumberIndex);
+
       return number;
     }
 
-    function buildWhatsAppHref(phrase, phoneNumber = getCurrentWhatsAppNumber()) {
-      const base = 'https://wa.me/' + phoneNumber;
-      const message = `¡Hola! Quiero más información sobre Ganamos. (${phrase})`;
-      return base + '?text=' + encodeURIComponent(message);
+    function buildWhatsAppMessage(phrase) {
+      const leadCode = getOrCreateLeadCode();
+
+      return `${phrase}. Vi que la carga mínima es $500 y el retiro mínimo $5.000. Mi Código de descuento es: ${leadCode}`;
+    }
+
+    function buildWhatsAppHref(phoneNumber, phrase) {
+      const message = buildWhatsAppMessage(phrase);
+      return 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+    }
+
+    function wasLeadAlreadyTracked() {
+      try {
+        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
+      } catch (err) {
+        return false;
+      }
+    }
+
+    function markLeadAsTracked() {
+      try {
+        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
+      } catch (err) {}
+    }
+
+    function buildEventId(locationName) {
+      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    }
+
+    function trackOnlyMetaLeadOnce(locationName) {
+      if (wasLeadAlreadyTracked()) {
+        return;
+      }
+
+      markLeadAsTracked();
+
+      const eventId = buildEventId(locationName);
+      const leadCode = getOrCreateLeadCode();
+
+      try {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: 'Ganamos WhatsApp Lead',
+            content_category: locationName,
+            lead_code: leadCode,
+            value: 0,
+            currency: 'ARS'
+          }, {
+            eventID: eventId
+          });
+        }
+      } catch (err) {
+        console.warn('fbq Lead error', err);
+      }
+    }
+
+    function trackWhatsAppOpenIntent(locationName) {
+      const leadCode = getOrCreateLeadCode();
+
+      try {
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'WhatsAppOpenIntent', {
+            content_name: 'Ganamos WhatsApp Open Intent',
+            content_category: locationName,
+            lead_code: leadCode
+          });
+        }
+      } catch (err) {
+        console.warn('fbq custom event error', err);
+      }
+
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'lead_whatsapp_ganamos', {
+            event_category: 'engagement',
+            event_label: locationName,
+            lead_code: leadCode,
+            value: 1
+          });
+        }
+      } catch (err) {
+        console.warn('gtag error', err);
+      }
+    }
+
+    function getLocationNameFromButton(button, index) {
+      if (!button) return 'cta_' + index;
+
+      const id = button.id || '';
+      if (id === 'ctaBtn') return 'hero';
+      if (id === 'ctaBtnBottom') return 'bottom';
+      if (id === 'ctaBtnSticky') return 'sticky';
+
+      return id || 'cta_' + index;
+    }
+
+    function fadeText(el, newText) {
+      if (!el) return;
+
+      el.classList.add('fade-out');
+
+      setTimeout(() => {
+        el.textContent = newText;
+        el.classList.remove('fade-out');
+        el.classList.add('fade-in');
+
+        setTimeout(() => {
+          el.classList.remove('fade-in');
+        }, 350);
+      }, 180);
+    }
+
+    function setStatus(message, type) {
+      if (!waStatusEl) return;
+
+      waStatusEl.textContent = message || '';
+
+      if (type === 'error') {
+        waStatusEl.className = 'mt-4 text-sm text-red-300';
+      } else {
+        waStatusEl.className = 'mt-4 text-sm text-[#9a86b8]';
+      }
+    }
+
+    function updateCTAState() {
+      const text = ctaTexts[currentIndex];
+
+      if (!numbersLoaded) {
+        fadeText(ctaTextEl, 'Cargando WhatsApp...');
+        fadeText(ctaTextBottomEl, 'Cargando WhatsApp...');
+        fadeText(ctaTextStickyEl, 'Cargando WhatsApp...');
+
+        ctaButtons.forEach(button => {
+          button.classList.add('wa-disabled');
+          button.setAttribute('aria-disabled', 'true');
+          button.setAttribute('href', '#');
+        });
+
+        setStatus('Preparando contacto de WhatsApp...', 'info');
+        return;
+      }
+
+      if (!whatsappNumbers.length) {
+        fadeText(ctaTextEl, 'WhatsApp no disponible');
+        fadeText(ctaTextBottomEl, 'WhatsApp no disponible');
+        fadeText(ctaTextStickyEl, 'WhatsApp no disponible');
+
+        ctaButtons.forEach(button => {
+          button.classList.add('wa-disabled');
+          button.setAttribute('aria-disabled', 'true');
+          button.setAttribute('href', '#');
+        });
+
+        setStatus(numbersLoadError || 'No se encontraron números disponibles en numeros.json.', 'error');
+        return;
+      }
+
+      fadeText(ctaTextEl, text);
+      fadeText(ctaTextBottomEl, text);
+      fadeText(ctaTextStickyEl, text);
+
+      ctaButtons.forEach(button => {
+        button.classList.remove('wa-disabled');
+        button.setAttribute('aria-disabled', 'false');
+        button.setAttribute('href', '#whatsapp');
+      });
+
+      setStatus('WhatsApp listo. Tocá el botón y enviá el mensaje preparado.', 'info');
     }
 
     async function loadWhatsAppNumbers() {
@@ -496,89 +864,67 @@
         const data = await response.json();
         const loadedNumbers = normalizeWhatsAppNumbers(data);
 
-        if (loadedNumbers.length) {
-          whatsappNumbers = loadedNumbers;
-          nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        if (!loadedNumbers.length) {
+          throw new Error('El archivo numeros.json no tiene números válidos.');
         }
+
+        whatsappNumbers = loadedNumbers;
+        nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        numbersLoadError = '';
       } catch (err) {
-        console.warn('Usando número de WhatsApp por defecto:', err);
+        whatsappNumbers = [];
+        numbersLoadError = 'No se pudieron cargar los números de WhatsApp desde numeros.json. Revisá que el archivo exista, tenga números válidos y esté publicado correctamente.';
+        console.warn('WhatsApp JSON error:', err);
+      } finally {
+        numbersLoaded = true;
+        updateCTAState();
       }
-
-      updateCTAs(currentIndex);
     }
 
-    function fadeText(el, newText) {
-      if (!el) return;
-      el.classList.add('fade-out');
-      setTimeout(() => {
-        el.textContent = newText;
-        el.classList.remove('fade-out');
-        el.classList.add('fade-in');
-        setTimeout(() => el.classList.remove('fade-in'), 350);
-      }, 180);
-    }
+    function attachCTAEvents() {
+      ctaButtons.forEach((button, index) => {
+        const locationName = getLocationNameFromButton(button, index);
 
-    function updateCTAs(index) {
-      const phrase = phrases[index];
-      fadeText(ctaTextEl, phrase);
-      fadeText(ctaTextBottomEl, phrase);
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
 
-      const waHref = buildWhatsAppHref(phrase);
-      ctaBtnEl.setAttribute('href', waHref);
-      ctaBtnBottomEl.setAttribute('href', waHref);
+          if (!hasAvailableWhatsAppNumbers()) {
+            updateCTAState();
+            return;
+          }
 
-      ctaBtnEl.dataset.ctaPhrase = phrase;
-      ctaBtnBottomEl.dataset.ctaPhrase = phrase;
+          const phoneNumber = getNextWhatsAppNumberForClick();
 
-      ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
-      ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
-    }
+          if (!phoneNumber) {
+            updateCTAState();
+            return;
+          }
 
-    function attachClickTracking(buttonEl, locationName) {
-      if (!buttonEl) return;
+          const phrase = messagePhrases[currentIndex % messagePhrases.length];
+          const whatsappHref = buildWhatsAppHref(phoneNumber, phrase);
 
-      buttonEl.addEventListener('click', function () {
-        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
-        const phoneNumber = getNextWhatsAppNumberForClick();
-        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+          const timeOnPageMs = Date.now() - pageLoadedAt;
+          const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
 
-        const eventId = 'lead_cta_' + locationName + '_' + Date.now();
+          if (shouldTrackLead) {
+            trackOnlyMetaLeadOnce(locationName);
+            trackWhatsAppOpenIntent(locationName);
+          }
 
-        try {
-          fbq('track', 'Lead', {
-            content_name: 'Hoy Ganas WhatsApp CTA',
-            content_category: locationName,
-            value: 0,
-            currency: 'ARS'
-          }, {
-            eventID: eventId
-          });
-        } catch (err) {
-          console.warn('fbq error', err);
-        }
-
-        try {
-          gtag('event', 'lead_whatsapp_Hoy Ganas', {
-            event_category: 'engagement',
-            event_label: locationName,
-            value: 1
-          });
-        } catch (err) {
-          console.warn('gtag error', err);
-        }
+          window.location.href = whatsappHref;
+        });
       });
     }
 
-    updateCTAs(currentIndex);
+    updateCTAState();
     loadWhatsAppNumbers();
 
     setInterval(() => {
-      currentIndex = (currentIndex + 1) % phrases.length;
-      updateCTAs(currentIndex);
-    }, 4000);
+      currentIndex = (currentIndex + 1) % ctaTexts.length;
+      updateCTAState();
+    }, 4200);
 
-    attachClickTracking(ctaBtnEl, 'hero');
-    attachClickTracking(ctaBtnBottomEl, 'bottom');
+    attachCTAEvents();
 
     // Reveal on scroll
     const observer = new IntersectionObserver((entries) => {
