@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QF271E9TVW"></script>
@@ -28,566 +28,402 @@
   fbq('init', '31570808639231746');
   fbq('track', 'PageView');
   </script>
-
   <noscript>
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=31570808639231746&ev=PageView&noscript=1"
-      alt=""
     />
   </noscript>
   <!-- End Meta Pixel Code -->
 
-  <title>Ganamos | Reclamá 50% extra por WhatsApp</title>
-  <meta name="description" content="Reclamá tu 50% extra en la primera carga. Creá tu usuario por WhatsApp, carga mínima $500, retiro mínimo $5.000 y atención 24 horas." />
-
+  <title>Ganamos</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root {
-      --bg: #07030f;
-      --bg-2: #130720;
-      --card: rgba(24, 10, 42, 0.78);
-      --stroke: rgba(216, 180, 254, 0.24);
-      --stroke-strong: rgba(216, 180, 254, 0.42);
+      --bg: #0b0615;
+      --bg-soft: #160b2a;
+      --card: rgba(22, 10, 38, 0.78);
+      --stroke: rgba(168, 85, 247, 0.22);
       --primary: #a855f7;
       --primary-2: #7c3aed;
-      --accent: #f3e8ff;
-      --muted: #d8c7ee;
-      --muted-2: #a58aba;
-      --success: #22c55e;
+      --accent: #e9d5ff;
+      --text-soft: #c9b8dd;
+      --shadow-glow: 0 0 35px rgba(168, 85, 247, 0.24);
     }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
-
-    html, body { width: 100%; overflow-x: hidden; }
+    * {
+      scroll-behavior: smooth;
+    }
 
     body {
-      min-height: 100vh;
       background:
-        radial-gradient(circle at 16% -4%, rgba(168, 85, 247, 0.38), transparent 34rem),
-        radial-gradient(circle at 95% 8%, rgba(236, 72, 153, 0.20), transparent 28rem),
-        radial-gradient(circle at 50% 88%, rgba(124, 58, 237, 0.18), transparent 30rem),
-        linear-gradient(180deg, #07030f 0%, #130720 48%, #050208 100%);
-      color: #fff;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: geometricPrecision;
+        radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(216, 180, 254, 0.10), transparent 40%),
+        linear-gradient(180deg, #0b0615 0%, #10091c 45%, #05030a 100%);
+      overflow-x: hidden;
     }
 
-    .page-noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.12;
+    .hero-grid {
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.85), transparent 88%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.85), transparent 88%);
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(24px);
-      opacity: 0.78;
-      pointer-events: none;
-      animation: floaty 7s ease-in-out infinite;
-    }
-
-    .orb.one {
-      width: 190px;
-      height: 190px;
-      right: -70px;
-      top: 90px;
-      background: rgba(168, 85, 247, 0.24);
-    }
-
-    .orb.two {
-      width: 150px;
-      height: 150px;
-      left: -64px;
-      bottom: 80px;
-      background: rgba(236, 72, 153, 0.16);
-      animation-delay: -2s;
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent 92%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent 92%);
     }
 
     .glass {
-      background: rgba(15, 7, 28, 0.74);
+      background: rgba(16, 9, 28, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--stroke);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.30), 0 0 32px rgba(168, 85, 247, 0.12);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-glow);
     }
 
-    .bonus-shell {
-      background:
-        radial-gradient(circle at 20% 12%, rgba(255, 255, 255, 0.28), transparent 25%),
-        linear-gradient(135deg, rgba(168, 85, 247, 0.46), rgba(24, 10, 42, 0.95) 52%, rgba(236, 72, 153, 0.20));
-      border: 1px solid rgba(233, 213, 255, 0.34);
-      box-shadow: 0 24px 78px rgba(168, 85, 247, 0.25);
+    .fade-text {
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    .promo-text {
-      text-shadow: 0 0 32px rgba(233, 213, 255, 0.24);
+    .fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .float-orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(18px);
+      opacity: 0.28;
+      animation: floatY 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .float-orb.orb-1 {
+      width: 240px;
+      height: 240px;
+      background: rgba(168, 85, 247, 0.22);
+      top: 8%;
+      left: -4%;
+    }
+
+    .float-orb.orb-2 {
+      width: 180px;
+      height: 180px;
+      background: rgba(216, 180, 254, 0.20);
+      right: 2%;
+      top: 18%;
+      animation-delay: 1.2s;
+    }
+
+    .float-orb.orb-3 {
+      width: 220px;
+      height: 220px;
+      background: rgba(124, 58, 237, 0.18);
+      bottom: 10%;
+      left: 12%;
+      animation-delay: 2.2s;
     }
 
     .shine-btn {
       position: relative;
-      isolation: isolate;
       overflow: hidden;
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.46), inset 0 1px 0 rgba(255,255,255,0.22);
-      touch-action: manipulation;
+      isolation: isolate;
     }
 
     .shine-btn::before {
       content: "";
       position: absolute;
-      top: -150%;
-      left: -60%;
-      width: 48%;
-      height: 360%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+      top: -120%;
+      left: -40%;
+      width: 45%;
+      height: 300%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+      );
       transform: rotate(18deg);
-      animation: shineSweep 3.35s linear infinite;
-      z-index: -1;
+      animation: shineSweep 3.8s linear infinite;
+      z-index: 0;
     }
 
-    .cta-disabled {
-      opacity: 0.68;
-      cursor: wait;
-    }
-
-    .pulse-ring {
+    .shine-btn > * {
       position: relative;
+      z-index: 1;
     }
 
-    .pulse-ring::after {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border-radius: 24px;
-      border: 1px solid rgba(216, 180, 254, 0.26);
-      animation: pulseRing 2.25s ease-out infinite;
-      pointer-events: none;
+    .benefit-card {
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow: 0 16px 50px rgba(168, 85, 247, 0.18);
+    }
+
+    .mock-card {
+      animation: floatY 5s ease-in-out infinite;
+    }
+
+    .mock-card.delay-1 {
+      animation-delay: 0.8s;
+    }
+
+    .mock-card.delay-2 {
+      animation-delay: 1.5s;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .reveal.show { opacity: 1; transform: translateY(0); }
-
-    .soft-card, .step-card, .faq-card {
-      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-    }
-
-    .soft-card:hover, .step-card:hover, .faq-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--stroke-strong);
-      background: rgba(27, 13, 48, 0.82);
-    }
-
-    .sticky-mobile-cta { display: none; }
-    .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-
-    .toast {
-      position: fixed;
-      z-index: 80;
-      left: 50%;
-      bottom: 22px;
-      width: calc(100% - 28px);
-      max-width: 520px;
-      transform: translate(-50%, 140%);
-      opacity: 0;
-      border: 1px solid rgba(216, 180, 254, 0.26);
-      background: rgba(15, 7, 28, 0.94);
-      color: #f3e8ff;
-      border-radius: 20px;
-      padding: 13px 15px;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.42), 0 0 28px rgba(168,85,247,0.18);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      transition: transform 0.25s ease, opacity 0.25s ease;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .toast.show {
-      transform: translate(-50%, 0);
+    .reveal.show {
       opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes shineSweep { 0% { left: -60%; } 100% { left: 135%; } }
-    @keyframes pulseRing { 0% { opacity: 0.85; transform: scale(0.985); } 100% { opacity: 0; transform: scale(1.08); } }
-    @keyframes floaty { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-18px,0); } }
-
-    @media (max-width: 768px) {
-      body { padding-bottom: 92px; }
-      .sticky-mobile-cta {
-        display: block;
-        position: fixed;
-        z-index: 60;
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-      }
-      .hero-logo { width: 196px; }
-      .hero-title {
-        font-size: clamp(2.45rem, 12vw, 4rem);
-        line-height: 0.92;
-        letter-spacing: -0.06em;
-      }
-      .mobile-compact-hero { min-height: auto; padding-top: 20px; }
-      .glass { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-      .toast { bottom: 92px; }
+    .pulse-badge {
+      animation: pulseGlow 2.2s ease-in-out infinite;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @keyframes shineSweep {
+      0% { left: -45%; }
+      100% { left: 130%; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.22);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(168, 85, 247, 0);
       }
     }
   </style>
 </head>
 
-<body>
-  <div class="page-noise"></div>
+<body class="text-white antialiased">
 
-  <header class="relative mobile-compact-hero min-h-screen flex items-center overflow-hidden">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
+  <!-- Fondo decorativo -->
+  <div class="float-orb orb-1"></div>
+  <div class="float-orb orb-2"></div>
+  <div class="float-orb orb-3"></div>
 
-    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-14 grid lg:grid-cols-[1.02fr_0.98fr] gap-8 lg:gap-12 items-center">
-      <section class="text-center lg:text-left reveal">
-        <div class="inline-flex items-center gap-2 rounded-full border border-[#d8b4fe3b] bg-white/[0.07] px-3.5 py-2 text-xs sm:text-sm font-black text-[#f3e8ff] mb-5">
-          <span>🎁</span>
-          <span>Bono activo · Primera carga con 50% extra</span>
-        </div>
+  <!-- HERO -->
+  <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="hero-grid absolute inset-0 opacity-40"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Texto -->
+      <div class="text-center lg:text-left reveal">
+        <span class="pulse-badge inline-flex items-center gap-2 mb-5 px-4 py-2 rounded-full border border-[#a855f733] bg-[#160b2a]/80 text-sm text-[#e9d5ff]">
+          Plataforma online segura · Atención 24hs
+        </span>
 
         <img
           src="https://ganamosnet.club/img/src/components/Logo/img/logo-net-new.png"
           alt="Logo Ganamos"
-          class="hero-logo mx-auto lg:mx-0 mb-6 w-64 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.32)]"
+          class="mx-auto lg:mx-0 mb-8 w-72 md:w-80 h-auto drop-shadow-[0_0_18px_rgba(168,85,247,0.24)]"
         />
 
-        <h1 class="hero-title text-5xl md:text-7xl font-black leading-[0.94] tracking-[-0.06em] mb-5">
-          Reclamá tu
-          <span class="promo-text block bg-gradient-to-r from-white via-[#f3e8ff] to-[#a855f7] bg-clip-text text-transparent">
-            50% extra
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
+          Viví la experiencia
+          <span class="bg-gradient-to-r from-[#e9d5ff] via-[#a855f7] to-[#7c3aed] bg-clip-text text-transparent">
+            Ganamos
           </span>
-          <span class="block text-3xl md:text-5xl tracking-[-0.045em] text-[#f3e8ff] mt-2">por WhatsApp</span>
+          online
         </h1>
 
-        <p class="text-base md:text-xl text-[#d8c7ee] mb-5 max-w-2xl mx-auto lg:mx-0">
-          Tocás el botón, se abre WhatsApp con el mensaje listo y te ayudamos a crear tu usuario para activar el bono.
+        <p class="text-lg md:text-xl text-[#c9b8dd] mb-8 max-w-2xl mx-auto lg:mx-0">
+          Disfrutá una plataforma confiable con +2000 juegos, atención personalizada las 24 horas
+          y bono de bienvenida para empezar con todo.
         </p>
 
-        <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6 max-w-xl mx-auto lg:mx-0">
-          <div class="rounded-2xl border border-white/10 bg-white/[0.065] px-2.5 py-3 text-center">
-            <p class="text-[11px] sm:text-xs text-[#a996c2]">Carga mín.</p>
-            <p class="text-sm sm:text-lg font-black text-white">$500</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.065] px-2.5 py-3 text-center">
-            <p class="text-[11px] sm:text-xs text-[#a996c2]">Retiro mín.</p>
-            <p class="text-sm sm:text-lg font-black text-white">$5.000</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.065] px-2.5 py-3 text-center">
-            <p class="text-[11px] sm:text-xs text-[#a996c2]">Atención</p>
-            <p class="text-sm sm:text-lg font-black text-white">24 hs</p>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
           <a id="ctaBtn"
-             data-wa-trigger="true"
-             data-wa-location="hero"
              role="button"
-             aria-label="Reclamar 50% extra por WhatsApp"
-             href="#whatsapp"
-             class="pulse-ring shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 text-base font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
+             aria-label="Ir a WhatsApp"
+             href="#"
+             class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
              rel="noopener noreferrer">
-            Reclamar 50% por WhatsApp
+            <span id="ctaText">Cargando...</span>
           </a>
 
-          <a href="#info"
-             class="inline-flex w-full sm:w-auto items-center justify-center rounded-2xl border border-[#d8b4fe33] bg-white/[0.05] px-6 py-4 text-sm font-bold text-[#f5edff] transition hover:bg-white/[0.09]">
-            Ver cómo funciona
+          <a id="ctaSmall"
+             href="#registro"
+             class="inline-flex items-center justify-center border border-[#a855f733] bg-[#160b2a]/70 px-5 py-3 rounded-2xl text-sm text-[#f5edff] hover:bg-[#24113d] transition">
+            Más información
           </a>
         </div>
 
-        <p class="mt-4 text-xs leading-relaxed text-[#bfa8d8] max-w-xl mx-auto lg:mx-0">
-          Se abre WhatsApp con el mensaje listo. Solo tocá <strong class="text-white">ENVIAR</strong> para que podamos atenderte.
+        <p class="mt-6 text-sm text-[#9a86b8]">
+          Hecho para quienes buscan una experiencia distinta.
         </p>
-      </section>
+      </div>
 
-      <section class="reveal">
-        <div class="bonus-shell rounded-[32px] p-4 sm:p-6">
-          <div class="rounded-[26px] border border-white/10 bg-[#090512]/84 p-5 sm:p-7">
-            <div class="flex items-start justify-between gap-4 mb-5">
+      <!-- Visual -->
+      <div class="relative reveal">
+        <div class="glass rounded-[32px] p-5 md:p-6">
+          <div class="rounded-[26px] border border-white/5 bg-gradient-to-br from-[#150b24] to-[#090512] p-6">
+            <div class="flex items-center justify-between mb-5">
               <div>
-                <p class="text-sm font-black text-[#c4a3ff]">Promoción de bienvenida</p>
-                <h2 class="text-2xl sm:text-3xl font-black">Tu primera carga rinde más</h2>
+                <p class="text-sm text-[#c4a3ff]">Panel Ganamos</p>
+                <h3 class="text-2xl font-bold text-white">Acceso inmediato</h3>
               </div>
-              <span class="rounded-full border border-[#bbf7d033] bg-[#22c55e17] px-3 py-1 text-xs font-black text-[#bbf7d0]">Disponible</span>
+              <div class="h-3 w-3 rounded-full bg-[#a855f7] shadow-[0_0_20px_rgba(60,242,208,0.8)]"></div>
             </div>
 
-            <div class="rounded-[28px] border border-[#e9d5ff28] bg-gradient-to-br from-[#1a0b2f] to-[#0b0615] p-5 text-center mb-4">
-              <p class="text-xs uppercase tracking-[0.26em] text-[#c9b8dd]">Bono de bienvenida</p>
-              <div class="text-7xl sm:text-8xl font-black leading-none bg-gradient-to-r from-white via-[#e9d5ff] to-[#a855f7] bg-clip-text text-transparent drop-shadow-[0_0_28px_rgba(233,213,255,0.20)]">
-                +50%
-              </div>
-              <p class="mt-2 text-lg font-black">extra en tu primera carga</p>
-            </div>
-
-            <div class="grid gap-3">
-              <div class="glass rounded-2xl p-4">
-                <div class="flex items-center justify-between gap-3">
+            <div class="grid gap-4">
+              <div class="mock-card glass rounded-2xl p-4">
+                <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-sm text-[#b9a4d8]">Ejemplo simple</p>
-                    <p class="text-lg sm:text-xl font-black">Cargás $500 → recibís $750</p>
+                    <p class="text-sm text-[#b9a4d8]">Bono de bienvenida</p>
+                    <p class="text-xl font-bold text-[#e9d5ff]">+50% De bonificacion en tu primera vez sin tope maximo</p>
                   </div>
-                  <span class="text-2xl">⚡</span>
+                  <span class="text-2xl">🎁</span>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3">
-                <div class="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
-                  <p class="text-xs text-[#a996c2]">Carga mínima</p>
-                  <p class="text-xl font-black">$500</p>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/[0.05] p-4">
-                  <p class="text-xs text-[#a996c2]">Retiro mínimo</p>
-                  <p class="text-xl font-black">$5.000</p>
+              <div class="mock-card delay-1 glass rounded-2xl p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-[#b9a4d8]">Juegos disponibles</p>
+                    <p class="text-xl font-bold text-white">Más de 2000 opciones</p>
+                  </div>
+                  <span class="text-2xl">🎮</span>
                 </div>
               </div>
 
-              <a id="ctaBtnCard"
-                 data-wa-trigger="true"
-                 data-wa-location="card"
-                 href="#whatsapp"
-                 class="shine-btn inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-[#160b2a] transition hover:scale-[1.02] active:scale-[0.99]"
-                 rel="noopener noreferrer">
-                Quiero mi usuario ahora
-              </a>
+              <div class="mock-card delay-2 glass rounded-2xl p-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-[#b9a4d8]">Atención personalizada</p>
+                    <p class="text-xl font-bold text-white">Disponible 24/7</p>
+                  </div>
+                  <span class="text-2xl">🕐</span>
+                </div>
+              </div>
+            </div>
 
-              <p class="text-center text-xs text-[#a994c0]">Atención por WhatsApp las 24 horas.</p>
+            <div class="mt-5 rounded-2xl border border-[#a855f722] bg-[#10091c] px-4 py-3 text-sm text-[#d8c7ff]">
+              Registrate en segundos y empezá hoy mismo.
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   </header>
 
-  <section id="info" class="relative z-10 px-4 sm:px-6 -mt-2 md:-mt-8">
-    <div class="max-w-6xl mx-auto glass rounded-[26px] p-4 sm:p-5 reveal">
-      <div class="grid md:grid-cols-[1fr_1fr_1fr_auto] gap-3 md:gap-4 items-center text-center md:text-left">
-        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
-          <p class="text-xs text-[#a996c2]">Bono inicial</p>
-          <p class="text-xl font-black text-[#f3e8ff]">50% extra</p>
-        </div>
-        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
-          <p class="text-xs text-[#a996c2]">Mínimo de carga</p>
-          <p class="text-xl font-black text-[#f3e8ff]">$500</p>
-        </div>
-        <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-4">
-          <p class="text-xs text-[#a996c2]">Mínimo de retiro</p>
-          <p class="text-xl font-black text-[#f3e8ff]">$5.000</p>
-        </div>
-        <a id="ctaBtnInfo"
-           data-wa-trigger="true"
-           data-wa-location="info"
-           href="#whatsapp"
-           class="shine-btn inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 font-black text-white"
-           rel="noopener noreferrer">
-          Activar bono
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <main class="relative py-14 sm:py-20">
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+  <!-- BENEFICIOS -->
+  <main class="relative py-20">
+    <section class="max-w-6xl mx-auto px-6 text-center">
       <div class="reveal">
-        <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-3">Entrás rápido desde el celu</h2>
-        <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-8">
-          Sin vueltas: tocás WhatsApp, mandás el mensaje preparado y te guiamos para crear tu usuario.
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué elegir Ganamos?</h2>
+        <p class="text-[#c9b8dd] max-w-2xl mx-auto mb-10">
+          Todo lo que necesitás para jugar con confianza, comodidad y soporte real.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
-          <div class="text-3xl mb-3">🎁</div>
-          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">50% extra</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Pedí el bono de bienvenida y sumá saldo extra en tu primera carga.</p>
-        </article>
-
-        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
-          <div class="text-3xl mb-3">📲</div>
-          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">WhatsApp directo</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">El botón abre el chat con el mensaje listo. Solo tenés que tocar enviar.</p>
-        </article>
-
-        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
-          <div class="text-3xl mb-3">⚡</div>
-          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Cargas automáticas</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Cargá desde la página de forma cómoda, sin pedir CBU manualmente.</p>
-        </article>
-
-        <article class="soft-card reveal glass rounded-3xl p-5 text-left">
-          <div class="text-3xl mb-3">🕒</div>
-          <h3 class="text-lg font-black text-[#f3e8ff] mb-2">Atención 24 hs</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Te acompañamos por WhatsApp para crear tu usuario y activar la promo.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="como-empezar" class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20">
-      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 lg:gap-10 items-start">
-        <div class="reveal lg:sticky lg:top-8">
-          <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.05] px-3 py-1 text-sm font-bold text-[#f3e8ff] mb-4">Cómo empezar</span>
-          <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-4">Tres pasos y listo</h2>
-          <p class="text-[#c9b8dd] mb-5">El flujo queda directo para que no se pierda gente antes de escribir.</p>
-          <a id="ctaBtnSteps"
-             data-wa-trigger="true"
-             data-wa-location="steps"
-             href="#whatsapp"
-             class="hidden sm:inline-flex shine-btn items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-6 py-3.5 font-black text-white"
-             rel="noopener noreferrer">
-            Abrir WhatsApp ahora
-          </a>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
+          <div class="text-3xl mb-4">🎮</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">+2000 juegos online</h3>
+          <p class="text-[#d4c4ea]">
+            Accedé a una plataforma estable y completa, con variedad para todos los gustos.
+          </p>
         </div>
 
-        <div class="grid gap-4">
-          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
-            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">1</div>
-            <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Tocás el botón</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">No hay formulario ni paso intermedio: vas directo al chat.</p>
-            </div>
-          </article>
-
-          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
-            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">2</div>
-            <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Tocás ENVIAR en WhatsApp</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">El mensaje ya incluye el código de descuento para identificar la promo.</p>
-            </div>
-          </article>
-
-          <article class="step-card reveal glass rounded-3xl p-5 flex gap-4">
-            <div class="shrink-0 h-11 w-11 rounded-2xl bg-[#a855f71f] border border-[#d8b4fe33] flex items-center justify-center font-black text-[#f3e8ff]">3</div>
-            <div>
-              <h3 class="text-xl font-black text-[#f3e8ff] mb-1">Activás el 50%</h3>
-              <p class="text-sm leading-relaxed text-[#d8c7ee]">Carga mínima <strong class="text-white">$500</strong> y retiro mínimo <strong class="text-white">$5.000</strong>.</p>
-            </div>
-          </article>
+        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
+          <div class="text-3xl mb-4">🎁</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Bono de bienvenida</h3>
+          <p class="text-[#d4c4ea]">
+            Empezá con una promo especial para nuevos usuarios y aprovechá tus primeros movimientos.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20">
-      <div class="reveal text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-black tracking-[-0.035em] mb-3">Información importante</h2>
-        <p class="text-[#c9b8dd] max-w-2xl mx-auto">Lo principal queda claro antes de escribir para que el contacto llegue con menos dudas.</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-4 sm:gap-5">
-        <article class="faq-card reveal glass rounded-3xl p-5">
-          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cuál es la carga mínima?</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">La carga mínima es de <strong class="text-white">$500</strong>.</p>
-        </article>
-
-        <article class="faq-card reveal glass rounded-3xl p-5">
-          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cuál es el retiro mínimo?</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">El retiro mínimo es de <strong class="text-white">$5.000</strong>.</p>
-        </article>
-
-        <article class="faq-card reveal glass rounded-3xl p-5">
-          <h3 class="font-black text-[#f3e8ff] mb-2">¿Cómo activo el bono?</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Abrís WhatsApp desde el botón, enviás el mensaje preparado y pedís tu usuario con el 50% extra.</p>
-        </article>
-
-        <article class="faq-card reveal glass rounded-3xl p-5">
-          <h3 class="font-black text-[#f3e8ff] mb-2">¿Hay atención?</h3>
-          <p class="text-sm leading-relaxed text-[#d8c7ee]">Sí, hay atención por WhatsApp las 24 horas.</p>
-        </article>
+        <div class="benefit-card reveal glass p-6 rounded-3xl text-left">
+          <div class="text-3xl mb-4">🕐</div>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Atención 24 horas</h3>
+          <p class="text-[#d4c4ea]">
+            Recibí ayuda personalizada cuando la necesites, con respuesta rápida por WhatsApp.
+          </p>
+        </div>
       </div>
     </section>
   </main>
 
-  <section id="registro" class="relative px-4 sm:px-6 pb-16 sm:pb-20">
-    <div class="max-w-3xl mx-auto bonus-shell rounded-[30px] p-5 sm:p-8 text-center reveal">
-      <span class="inline-flex rounded-full border border-[#d8b4fe33] bg-white/[0.07] px-3 py-1 text-sm font-black text-[#f3e8ff] mb-4">50% extra disponible</span>
-      <h2 class="text-3xl md:text-5xl font-black tracking-[-0.04em] mb-4">Abrí WhatsApp y reclamá tu bono</h2>
-      <p class="text-[#d8c7ee] mb-6 max-w-xl mx-auto">Carga mínima $500 · Retiro mínimo $5.000 · Atención por WhatsApp 24 hs.</p>
+  <!-- FORMULARIO / CTA FINAL -->
+  <section id="registro" class="py-20 px-6">
+    <div class="max-w-xl mx-auto glass p-8 rounded-[30px] text-center reveal">
+      <span class="inline-block mb-4 px-3 py-1 rounded-full bg-[#a855f714] border border-[#a855f733] text-sm text-[#e9d5ff]">
+        Acceso rápido
+      </span>
+
+      <h3 class="text-3xl font-bold mb-4">¿Querés empezar ahora?</h3>
+      <p class="text-sm md:text-base text-[#c9b8dd] mb-7">
+        Escribinos por WhatsApp y recibí atención personalizada para crear tu usuario y conocer la plataforma.
+      </p>
 
       <a id="ctaBtnBottom"
-         data-wa-trigger="true"
-         data-wa-location="bottom"
-         href="#whatsapp"
-         class="shine-btn inline-flex w-full sm:w-auto items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-7 py-4 font-black text-white transition hover:scale-[1.02] active:scale-[0.99]"
+         class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
+         href="#"
          rel="noopener noreferrer">
-        Reclamar mi 50% extra
+        <span id="ctaTextBottom">Cargando...</span>
       </a>
-
-      <p class="mt-5 text-xs leading-relaxed text-[#a994c0]">+18 · Promoción para nuevos usuarios · Jugá con responsabilidad.</p>
     </div>
   </section>
 
-  <div class="sticky-mobile-cta safe-bottom">
-    <a id="ctaBtnSticky"
-       data-wa-trigger="true"
-       data-wa-location="sticky"
-       class="shine-btn inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#a855f7] to-[#7c3aed] px-5 py-4 text-sm font-black text-white"
-       href="#whatsapp"
-       rel="noopener noreferrer">
-      Reclamar 50% por WhatsApp
-    </a>
-  </div>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <footer class="px-4 sm:px-6 py-8 text-center text-xs sm:text-sm text-[#8f7aa8] border-t border-white/5">
-    <p>© 2026 Ganamos · Todos los derechos reservados</p>
-    <p class="mt-2">Plataforma exclusiva para mayores de 18 años. Jugá con responsabilidad.</p>
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-sm text-[#8f7aa8] border-t border-white/5">
+    © 2026 Ganamos · Todos los derechos reservados
   </footer>
 
-  <!-- SCRIPT: WhatsApp directo desde JSON + Meta Lead sin modal -->
+  <!-- SCRIPT: CTA dinámico + tracking + reveal -->
   <script>
   (function () {
+    const DEFAULT_WA_NUMBERS = ['541124656608'];
     const NUMBERS_FILE = './numeros.json';
-
     const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
-    const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
-    const LEAD_CODE_KEY = 'ganamos_real_message_code';
 
-    let whatsappNumbers = [];
+    let whatsappNumbers = [...DEFAULT_WA_NUMBERS];
     let nextNumberIndex = getStoredRotationIndex();
-    let numbersLoaded = false;
-    let numbersLoadError = '';
-    let toastTimer = null;
 
     const phrases = [
-      'Hola, quiero crear mi usuario y activar el 50% extra',
-      'Hola, quiero reclamar el bono del 50% en mi primera carga',
-      'Hola, quiero mi usuario con el bono de bienvenida',
-      'Hola, quiero registrarme y activar la promo del 50%',
-      'Hola, quiero empezar hoy con el 50% extra'
+      "Quiero crear mi usuario gratis 🍀",
+      "Mostrame los juegos disponibles 🎮",
+      "Estoy listo para empezar con $500 💸",
+      "Quiero aprovechar el bono de bienvenida 🎁",
+      "Contame cómo funciona Ganamos 🔍",
+      "Quiero saber cómo cargar y retirar 💰",
+      "Estoy buscando juegos confiables 👀",
+      "Quiero jugar hoy mismo 🕹️",
+      "Mostrame cómo registrarme en segundos ⚡",
+      "Quiero atención personalizada ahora 🕐",
+      "Estoy interesado en la promo de bienvenida 🎉",
+      "Quiero entrar a Ganamos 🚀"
     ];
 
-    const ctaButtons = Array.from(document.querySelectorAll('[data-wa-trigger="true"]'));
-    const toast = document.getElementById('toast');
-    const pageLoadedAt = Date.now();
-    let hadHumanInteraction = false;
+    const ctaTextEl = document.getElementById('ctaText');
+    const ctaBtnEl = document.getElementById('ctaBtn');
+    const ctaTextBottomEl = document.getElementById('ctaTextBottom');
+    const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
 
-    window.addEventListener('pointerdown', function () { hadHumanInteraction = true; }, { once: true });
-    window.addEventListener('keydown', function () { hadHumanInteraction = true; }, { once: true });
+    let currentIndex = Math.floor(Math.random() * phrases.length);
 
     function normalizeWhatsAppNumber(value) {
       return String(value || '').replace(/\D/g, '');
@@ -622,145 +458,34 @@
     function saveStoredRotationIndex(index) {
       try {
         localStorage.setItem(ROTATION_KEY, String(index));
-      } catch (err) {}
+      } catch (err) {
+        // Si el navegador bloquea localStorage, la rotación igual funciona durante la sesión actual.
+      }
+    }
+
+    function getCurrentWhatsAppNumber() {
+      if (!whatsappNumbers.length) {
+        whatsappNumbers = [...DEFAULT_WA_NUMBERS];
+      }
+
+      nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
+      return whatsappNumbers[nextNumberIndex];
     }
 
     function getNextWhatsAppNumberForClick() {
-      if (!whatsappNumbers.length) return null;
-
-      nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
-      const number = whatsappNumbers[nextNumberIndex];
+      const number = getCurrentWhatsAppNumber();
       nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
       saveStoredRotationIndex(nextNumberIndex);
-
       return number;
     }
 
-    function getOrCreateLeadCode() {
-      try {
-        const existingCode = sessionStorage.getItem(LEAD_CODE_KEY);
-        if (existingCode) return existingCode;
-
-        const newCode = 'G-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-        sessionStorage.setItem(LEAD_CODE_KEY, newCode);
-        return newCode;
-      } catch (err) {
-        return 'G-' + Date.now().toString(36).toUpperCase();
-      }
-    }
-
-    function buildWhatsAppMessage(phrase) {
-      const leadCode = getOrCreateLeadCode();
-      return phrase + '. Mi Código de descuento es: ' + leadCode;
-    }
-
-    function buildWhatsAppHref(phoneNumber, phrase) {
-      const message = buildWhatsAppMessage(phrase);
-      return 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
-    }
-
-    function showToast(message) {
-      if (!toast) return;
-
-      toast.textContent = message;
-      toast.classList.add('show');
-
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () {
-        toast.classList.remove('show');
-      }, 3600);
-    }
-
-    function setButtonsLoading(isLoading) {
-      ctaButtons.forEach(function (button) {
-        if (isLoading) {
-          button.classList.add('cta-disabled');
-          button.setAttribute('aria-busy', 'true');
-        } else {
-          button.classList.remove('cta-disabled');
-          button.removeAttribute('aria-busy');
-        }
-      });
-    }
-
-    function wasLeadAlreadyTracked() {
-      try {
-        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
-      } catch (err) {
-        return false;
-      }
-    }
-
-    function markLeadAsTracked() {
-      try {
-        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
-      } catch (err) {}
-    }
-
-    function buildEventId(locationName) {
-      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-    }
-
-    function trackMetaLeadOnce(locationName) {
-      if (wasLeadAlreadyTracked()) return;
-
-      markLeadAsTracked();
-
-      const eventId = buildEventId(locationName);
-      const leadCode = getOrCreateLeadCode();
-
-      try {
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            content_name: 'Ganamos WhatsApp Lead',
-            content_category: locationName,
-            lead_code: leadCode,
-            value: 0,
-            currency: 'ARS'
-          }, {
-            eventID: eventId
-          });
-        }
-      } catch (err) {
-        console.warn('fbq Lead error', err);
-      }
-
-      try {
-        if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', {
-            event_category: 'whatsapp',
-            event_label: locationName,
-            lead_code: leadCode
-          });
-        }
-      } catch (err) {
-        console.warn('gtag Lead error', err);
-      }
-    }
-
-    function trackWhatsAppIntent(locationName) {
-      const leadCode = getOrCreateLeadCode();
-
-      try {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'WhatsAppOpenIntent', {
-            content_name: 'Ganamos WhatsApp Open Intent',
-            content_category: locationName,
-            lead_code: leadCode
-          });
-        }
-      } catch (err) {
-        console.warn('fbq custom event error', err);
-      }
-    }
-
-    function getLocationName(button, index) {
-      return button.getAttribute('data-wa-location') || button.id || ('cta_' + index);
+    function buildWhatsAppHref(phrase, phoneNumber = getCurrentWhatsAppNumber()) {
+      const base = 'https://wa.me/' + phoneNumber;
+      const message = `¡Hola! Quiero más información sobre Ganamos. (${phrase})`;
+      return base + '?text=' + encodeURIComponent(message);
     }
 
     async function loadWhatsAppNumbers() {
-      setButtonsLoading(true);
-
       try {
         const response = await fetch(NUMBERS_FILE, { cache: 'no-store' });
 
@@ -771,81 +496,100 @@
         const data = await response.json();
         const loadedNumbers = normalizeWhatsAppNumbers(data);
 
-        if (!loadedNumbers.length) {
-          throw new Error('El archivo numeros.json no tiene números válidos.');
+        if (loadedNumbers.length) {
+          whatsappNumbers = loadedNumbers;
+          nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
+        }
+      } catch (err) {
+        console.warn('Usando número de WhatsApp por defecto:', err);
+      }
+
+      updateCTAs(currentIndex);
+    }
+
+    function fadeText(el, newText) {
+      if (!el) return;
+      el.classList.add('fade-out');
+      setTimeout(() => {
+        el.textContent = newText;
+        el.classList.remove('fade-out');
+        el.classList.add('fade-in');
+        setTimeout(() => el.classList.remove('fade-in'), 350);
+      }, 180);
+    }
+
+    function updateCTAs(index) {
+      const phrase = phrases[index];
+      fadeText(ctaTextEl, phrase);
+      fadeText(ctaTextBottomEl, phrase);
+
+      const waHref = buildWhatsAppHref(phrase);
+      ctaBtnEl.setAttribute('href', waHref);
+      ctaBtnBottomEl.setAttribute('href', waHref);
+
+      ctaBtnEl.dataset.ctaPhrase = phrase;
+      ctaBtnBottomEl.dataset.ctaPhrase = phrase;
+
+      ctaBtnEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+      ctaBtnBottomEl.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
+    }
+
+    function attachClickTracking(buttonEl, locationName) {
+      if (!buttonEl) return;
+
+      buttonEl.addEventListener('click', function () {
+        const phrase = buttonEl.dataset.ctaPhrase || phrases[currentIndex];
+        const phoneNumber = getNextWhatsAppNumberForClick();
+        buttonEl.setAttribute('href', buildWhatsAppHref(phrase, phoneNumber));
+
+        const eventId = 'lead_cta_' + locationName + '_' + Date.now();
+
+        try {
+          fbq('track', 'Lead', {
+            content_name: 'Hoy Ganas WhatsApp CTA',
+            content_category: locationName,
+            value: 0,
+            currency: 'ARS'
+          }, {
+            eventID: eventId
+          });
+        } catch (err) {
+          console.warn('fbq error', err);
         }
 
-        whatsappNumbers = loadedNumbers;
-        nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
-        numbersLoadError = '';
-      } catch (err) {
-        whatsappNumbers = [];
-        numbersLoadError = 'No se pudieron cargar los números de WhatsApp. Revisá numeros.json y volvé a publicar la landing.';
-        console.warn('WhatsApp JSON error:', err);
-      } finally {
-        numbersLoaded = true;
-        setButtonsLoading(false);
-      }
-    }
-
-    function handleWhatsAppClick(event, button, index) {
-      event.preventDefault();
-
-      if (!numbersLoaded) {
-        showToast('Estamos preparando WhatsApp. Tocá nuevamente en unos segundos.');
-        loadWhatsAppNumbers();
-        return;
-      }
-
-      if (!whatsappNumbers.length) {
-        showToast(numbersLoadError || 'WhatsApp no está disponible en este momento.');
-        return;
-      }
-
-      const phoneNumber = getNextWhatsAppNumberForClick();
-      if (!phoneNumber) {
-        showToast('WhatsApp no está disponible en este momento.');
-        return;
-      }
-
-      const locationName = getLocationName(button, index);
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      const whatsappHref = buildWhatsAppHref(phoneNumber, phrase);
-
-      const timeOnPageMs = Date.now() - pageLoadedAt;
-      const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 450;
-
-      if (shouldTrackLead) {
-        trackMetaLeadOnce(locationName);
-        trackWhatsAppIntent(locationName);
-      }
-
-      showToast('Se está abriendo WhatsApp. Cuando abra, tocá ENVIAR para reclamar el 50%.');
-
-      setTimeout(function () {
-        window.location.href = whatsappHref;
-      }, 90);
-    }
-
-    ctaButtons.forEach(function (button, index) {
-      button.addEventListener('click', function (event) {
-        handleWhatsAppClick(event, button, index);
+        try {
+          gtag('event', 'lead_whatsapp_Hoy Ganas', {
+            event_category: 'engagement',
+            event_label: locationName,
+            value: 1
+          });
+        } catch (err) {
+          console.warn('gtag error', err);
+        }
       });
-    });
+    }
 
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
+    updateCTAs(currentIndex);
+    loadWhatsAppNumbers();
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % phrases.length;
+      updateCTAs(currentIndex);
+    }, 4000);
+
+    attachClickTracking(ctaBtnEl, 'hero');
+    attachClickTracking(ctaBtnBottomEl, 'bottom');
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15 });
 
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      observer.observe(el);
-    });
-
-    loadWhatsAppNumbers();
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   })();
   </script>
 </body>
