@@ -430,9 +430,9 @@
 
         <div class="step-card reveal p-6 rounded-3xl text-left">
           <span class="step-number mb-4">2</span>
-          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Se abre WhatsApp</h3>
+          <h3 class="text-xl font-semibold mb-2 text-[#e9d5ff]">Confirmá</h3>
           <p class="text-[#d4c4ea]">
-            El mensaje ya aparece escrito con tu código de atención.
+            Te mostramos el mensaje preparado antes de abrir WhatsApp.
           </p>
         </div>
 
@@ -508,7 +508,7 @@
       </h3>
 
       <p class="text-sm md:text-base text-[#c9b8dd] mb-7">
-        Tocá el botón, abrí WhatsApp y mandá el mensaje que ya dejamos preparado. Carga mínima desde $500 y 50% extra en tu primera carga.
+        Tocá el botón, confirmá y abrí WhatsApp con el mensaje preparado. Carga mínima desde $500 y 50% extra en tu primera carga.
       </p>
 
       <a id="ctaBtnBottom"
@@ -528,6 +528,55 @@
     © 2026 Ganamos · Todos los derechos reservados
   </footer>
 
+  <!-- MODAL DOBLE CONFIRMACIÓN WHATSAPP -->
+  <div id="waConfirmModal"
+       class="fixed inset-0 z-[999] hidden items-end sm:items-center justify-center bg-black/70 px-4 py-5">
+    <div class="w-full max-w-md rounded-[28px] border border-[#a855f744] bg-[#10091c] p-5 shadow-[0_0_45px_rgba(168,85,247,0.28)]">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <p class="text-sm text-[#c4a3ff] font-semibold mb-1">Confirmar acceso</p>
+          <h3 class="text-2xl font-extrabold text-white leading-tight">
+            ¿Querés abrir WhatsApp?
+          </h3>
+        </div>
+
+        <button id="waCancelBtn"
+                type="button"
+                class="shrink-0 w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 transition"
+                aria-label="Cerrar">
+          ×
+        </button>
+      </div>
+
+      <p class="text-[#c9b8dd] text-sm leading-relaxed mb-5">
+        Te vamos a abrir WhatsApp con el mensaje ya escrito para activar el
+        <strong class="text-white">50% extra</strong> en tu primera carga.
+        Solo tenés que tocar <strong class="text-white">enviar</strong>.
+      </p>
+
+      <div class="rounded-2xl border border-[#a855f722] bg-[#0b0615] p-4 mb-5 text-left">
+        <p class="text-xs uppercase tracking-wide text-[#9a86b8] mb-1">Mensaje preparado</p>
+        <p id="waPreviewText" class="text-sm text-[#e9d5ff]">
+          Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga.
+        </p>
+      </div>
+
+      <div class="grid gap-3">
+        <button id="waConfirmBtn"
+                type="button"
+                class="shine-btn w-full inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-6 py-4 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)]">
+          <span>Sí, abrir WhatsApp</span>
+        </button>
+
+        <button id="waCancelBtnBottom"
+                type="button"
+                class="w-full inline-flex items-center justify-center border border-[#a855f733] bg-[#160b2a]/70 px-5 py-3.5 rounded-2xl text-sm text-[#f5edff] hover:bg-[#24113d] transition">
+          Seguir viendo
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPT: CTA dinámico + WhatsApp desde numeros.json + tracking -->
   <script>
   (function () {
@@ -536,6 +585,8 @@
       - No usa número default.
       - Solo usa los números publicados en ./numeros.json.
       - Si numeros.json falla o está vacío, no abre WhatsApp y no dispara Lead.
+      - Primer click: dispara WhatsAppIntent.
+      - Confirmación manual: dispara Lead.
       - Mensaje enviado a WhatsApp:
         "Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: G-XXXX"
     */
@@ -690,6 +741,35 @@
       return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
     }
 
+    function trackWhatsAppIntent(locationName) {
+      const leadCode = getOrCreateLeadCode();
+
+      try {
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'WhatsAppIntent', {
+            content_name: 'Ganamos WhatsApp Intent',
+            content_category: locationName,
+            lead_code: leadCode
+          });
+        }
+      } catch (err) {
+        console.warn('fbq intent error', err);
+      }
+
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'whatsapp_intent_ganamos', {
+            event_category: 'engagement',
+            event_label: locationName,
+            lead_code: leadCode,
+            value: 1
+          });
+        }
+      } catch (err) {
+        console.warn('gtag intent error', err);
+      }
+    }
+
     function trackLeadOnce(locationName) {
       if (wasLeadAlreadyTracked()) {
         return;
@@ -703,7 +783,7 @@
       try {
         if (typeof fbq === 'function') {
           fbq('track', 'Lead', {
-            content_name: 'Ganamos WhatsApp Lead',
+            content_name: 'Ganamos WhatsApp Lead Confirmado',
             content_category: locationName,
             lead_code: leadCode,
             value: 0,
@@ -712,14 +792,14 @@
             eventID: eventId
           });
 
-          fbq('trackCustom', 'WhatsAppOpenIntent', {
-            content_name: 'Ganamos WhatsApp Open Intent',
+          fbq('trackCustom', 'WhatsAppOpenConfirmed', {
+            content_name: 'Ganamos WhatsApp Open Confirmed',
             content_category: locationName,
             lead_code: leadCode
           });
         }
       } catch (err) {
-        console.warn('fbq error', err);
+        console.warn('fbq lead error', err);
       }
 
       try {
@@ -732,7 +812,7 @@
           });
         }
       } catch (err) {
-        console.warn('gtag error', err);
+        console.warn('gtag lead error', err);
       }
     }
 
@@ -835,12 +915,62 @@
     }
 
     function attachClickTracking() {
+      const modal = document.getElementById('waConfirmModal');
+      const confirmBtn = document.getElementById('waConfirmBtn');
+      const cancelBtn = document.getElementById('waCancelBtn');
+      const cancelBtnBottom = document.getElementById('waCancelBtnBottom');
+      const previewText = document.getElementById('waPreviewText');
+
+      let pendingWhatsappHref = '';
+      let pendingLocation = '';
+      let pendingButton = null;
+
+      function openModal() {
+        if (!modal) return;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        if (!modal) return;
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+
+        pendingWhatsappHref = '';
+        pendingLocation = '';
+        pendingButton = null;
+      }
+
+      function setOpeningState(button) {
+        if (!button) return;
+
+        if (button.dataset.opening !== '1') {
+          button.dataset.opening = '1';
+
+          const span = button.querySelector('span');
+          if (span) {
+            span.textContent = 'Abriendo WhatsApp...';
+          }
+        }
+      }
+
       ctaButtons.forEach(({ button, location }) => {
         button.addEventListener('click', function (event) {
           event.preventDefault();
 
           if (!numbersLoaded || !whatsappNumbers.length) {
             updateCTAs(currentIndex);
+            return;
+          }
+
+          const timeOnPageMs = Date.now() - pageLoadedAt;
+          const seemsHuman = hadHumanInteraction && timeOnPageMs > 650;
+
+          if (!seemsHuman) {
             return;
           }
 
@@ -851,26 +981,68 @@
             return;
           }
 
-          const whatsappHref = buildWhatsAppHref(phoneNumber);
+          const message = buildWhatsAppMessage();
+          const whatsappHref = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
 
-          if (button.dataset.opening !== '1') {
-            button.dataset.opening = '1';
+          pendingWhatsappHref = whatsappHref;
+          pendingLocation = location;
+          pendingButton = button;
 
-            const span = button.querySelector('span');
-            if (span) {
-              span.textContent = 'Abriendo WhatsApp...';
-            }
+          if (previewText) {
+            previewText.textContent = message;
           }
 
-          const timeOnPageMs = Date.now() - pageLoadedAt;
-          const shouldTrackLead = hadHumanInteraction && timeOnPageMs > 650;
+          /*
+            Primer evento:
+            Este NO es Lead.
+            Sirve para medir cuánta gente abre la confirmación.
+          */
+          trackWhatsAppIntent(location);
 
-          if (shouldTrackLead) {
-            trackLeadOnce(location);
-          }
-
-          window.location.href = whatsappHref;
+          openModal();
         });
+      });
+
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', function () {
+          if (!pendingWhatsappHref) {
+            closeModal();
+            return;
+          }
+
+          setOpeningState(pendingButton);
+
+          /*
+            Segundo evento:
+            Recién acá se dispara Lead.
+            Esto reduce falsos positivos en Meta.
+          */
+          trackLeadOnce(pendingLocation || 'confirm_modal');
+
+          window.location.href = pendingWhatsappHref;
+        });
+      }
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', closeModal);
+      }
+
+      if (cancelBtnBottom) {
+        cancelBtnBottom.addEventListener('click', closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeModal();
+        }
       });
     }
 
