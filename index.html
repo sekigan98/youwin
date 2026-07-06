@@ -270,6 +270,9 @@
       </div>
 
       <a id="ctaBtnFloat"
+             data-truelead-whatsapp
+             data-truelead-source="sticky"
+             data-truelead-message="Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: {{code}}"
          href="#"
          class="shine-btn inline-flex shrink-0 items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-4 py-3 rounded-2xl text-sm font-extrabold shadow-[0_0_24px_rgba(168,85,247,0.28)]"
          rel="noopener noreferrer">
@@ -329,6 +332,9 @@
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
           <a id="ctaBtn"
+             data-truelead-whatsapp
+             data-truelead-source="hero"
+             data-truelead-message="Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: {{code}}"
              role="button"
              aria-label="Enviar mensaje por WhatsApp"
              href="#"
@@ -447,6 +453,9 @@
 
       <div class="mt-10 reveal">
         <a id="ctaBtnMiddle"
+             data-truelead-whatsapp
+             data-truelead-source="middle"
+             data-truelead-message="Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: {{code}}"
            href="#"
            class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-8 py-4 rounded-2xl font-extrabold text-lg shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
            rel="noopener noreferrer">
@@ -512,6 +521,9 @@
       </p>
 
       <a id="ctaBtnBottom"
+             data-truelead-whatsapp
+             data-truelead-source="bottom"
+             data-truelead-message="Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: {{code}}"
          class="shine-btn inline-flex items-center justify-center bg-gradient-to-r from-[#a855f7] to-[#7c3aed] text-white px-7 py-3.5 rounded-2xl font-extrabold shadow-[0_0_30px_rgba(168,85,247,0.32)] hover:scale-105 transition transform"
          href="#"
          rel="noopener noreferrer">
@@ -577,30 +589,18 @@
     </div>
   </div>
 
-  <!-- SCRIPT: CTA dinámico + WhatsApp desde numeros.json + tracking -->
+  <!-- SCRIPT: CTA dinámico + TrueLead SDK -->
   <script>
   (function () {
     /*
-      IMPORTANTE:
-      - No usa número default.
-      - Solo usa los números publicados en ./numeros.json.
-      - Si numeros.json falla o está vacío, no abre WhatsApp y no dispara Lead.
-      - Primer click: dispara WhatsAppIntent.
-      - Confirmación manual: dispara Lead.
-      - Mensaje enviado a WhatsApp:
-        "Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: G-XXXX"
+      Integración TrueLead:
+      - La landing ya no usa numeros.json ni número fijo.
+      - El número de WhatsApp sale del proyecto en TrueLead.
+      - Ese proyecto usa el WhatsApp vinculado por QR.
+      - Cada click genera un código único TL-XXXXXX.
+      - El mensaje se abre con {code} reemplazado automáticamente por TrueLead.
+      - El evento Lead real se confirma cuando el mensaje entra al WhatsApp vinculado.
     */
-
-    const NUMBERS_FILE = './numeros.json';
-
-    const ROTATION_KEY = 'ganamos_next_whatsapp_number_index';
-    const LEAD_SESSION_KEY = 'ganamos_meta_lead_tracked_this_session';
-    const LEAD_CODE_KEY = 'ganamos_real_message_code';
-
-    let whatsappNumbers = [];
-    let nextNumberIndex = getStoredRotationIndex();
-    let numbersLoaded = false;
-    let numbersLoadError = '';
 
     const phrases = [
       "Enviar mensaje por WhatsApp 💬",
@@ -610,211 +610,14 @@
       "Crear usuario por WhatsApp 🚀"
     ];
 
-    const ctaTextEl = document.getElementById('ctaText');
-    const ctaBtnEl = document.getElementById('ctaBtn');
-
-    const ctaTextMiddleEl = document.getElementById('ctaTextMiddle');
-    const ctaBtnMiddleEl = document.getElementById('ctaBtnMiddle');
-
-    const ctaTextBottomEl = document.getElementById('ctaTextBottom');
-    const ctaBtnBottomEl = document.getElementById('ctaBtnBottom');
-
-    const ctaTextFloatEl = document.getElementById('ctaTextFloat');
-    const ctaBtnFloatEl = document.getElementById('ctaBtnFloat');
-
     const ctaButtons = [
-      { button: ctaBtnEl, text: ctaTextEl, location: 'hero', isFloat: false },
-      { button: ctaBtnMiddleEl, text: ctaTextMiddleEl, location: 'middle', isFloat: false },
-      { button: ctaBtnBottomEl, text: ctaTextBottomEl, location: 'bottom', isFloat: false },
-      { button: ctaBtnFloatEl, text: ctaTextFloatEl, location: 'sticky', isFloat: true }
+      { button: document.getElementById('ctaBtn'), text: document.getElementById('ctaText'), isFloat: false },
+      { button: document.getElementById('ctaBtnMiddle'), text: document.getElementById('ctaTextMiddle'), isFloat: false },
+      { button: document.getElementById('ctaBtnBottom'), text: document.getElementById('ctaTextBottom'), isFloat: false },
+      { button: document.getElementById('ctaBtnFloat'), text: document.getElementById('ctaTextFloat'), isFloat: true }
     ].filter(item => item.button);
 
     let currentIndex = Math.floor(Math.random() * phrases.length);
-
-    const pageLoadedAt = Date.now();
-    let hadHumanInteraction = false;
-
-    window.addEventListener('pointerdown', function () {
-      hadHumanInteraction = true;
-    }, { once: true });
-
-    window.addEventListener('keydown', function () {
-      hadHumanInteraction = true;
-    }, { once: true });
-
-    function normalizeWhatsAppNumber(value) {
-      return String(value || '').replace(/\D/g, '');
-    }
-
-    function normalizeWhatsAppNumbers(data) {
-      const rawNumbers = Array.isArray(data)
-        ? data
-        : (data && Array.isArray(data.numeros))
-          ? data.numeros
-          : (data && Array.isArray(data.numbers))
-            ? data.numbers
-            : (data && Array.isArray(data.whatsapp))
-              ? data.whatsapp
-              : [];
-
-      return rawNumbers
-        .map(item => typeof item === 'object' ? (item.numero || item.number || item.phone || '') : item)
-        .map(normalizeWhatsAppNumber)
-        .filter(Boolean);
-    }
-
-    function getStoredRotationIndex() {
-      try {
-        const storedIndex = Number(localStorage.getItem(ROTATION_KEY));
-        return Number.isFinite(storedIndex) && storedIndex >= 0 ? storedIndex : 0;
-      } catch (err) {
-        return 0;
-      }
-    }
-
-    function saveStoredRotationIndex(index) {
-      try {
-        localStorage.setItem(ROTATION_KEY, String(index));
-      } catch (err) {}
-    }
-
-    function getOrCreateLeadCode() {
-      try {
-        const existingCode = sessionStorage.getItem(LEAD_CODE_KEY);
-        if (existingCode) return existingCode;
-
-        const newCode = 'G-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-        sessionStorage.setItem(LEAD_CODE_KEY, newCode);
-        return newCode;
-      } catch (err) {
-        return 'G-' + Date.now().toString(36).toUpperCase();
-      }
-    }
-
-    function getCurrentWhatsAppNumber() {
-      if (!whatsappNumbers.length) {
-        return null;
-      }
-
-      nextNumberIndex = nextNumberIndex % whatsappNumbers.length;
-      return whatsappNumbers[nextNumberIndex];
-    }
-
-    function getNextWhatsAppNumberForClick() {
-      const number = getCurrentWhatsAppNumber();
-
-      if (!number) {
-        return null;
-      }
-
-      nextNumberIndex = (nextNumberIndex + 1) % whatsappNumbers.length;
-      saveStoredRotationIndex(nextNumberIndex);
-
-      return number;
-    }
-
-    function buildWhatsAppMessage() {
-      const leadCode = getOrCreateLeadCode();
-      return `Hola, quiero cargar desde $500 y activar el 50% extra en mi primera carga. Mi código es: ${leadCode}`;
-    }
-
-    function buildWhatsAppHref(phoneNumber) {
-      const message = buildWhatsAppMessage();
-      return 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
-    }
-
-    function wasLeadAlreadyTracked() {
-      try {
-        return sessionStorage.getItem(LEAD_SESSION_KEY) === '1';
-      } catch (err) {
-        return false;
-      }
-    }
-
-    function markLeadAsTracked() {
-      try {
-        sessionStorage.setItem(LEAD_SESSION_KEY, '1');
-      } catch (err) {}
-    }
-
-    function buildEventId(locationName) {
-      return 'ganamos_lead_' + locationName + '_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-    }
-
-    function trackWhatsAppIntent(locationName) {
-      const leadCode = getOrCreateLeadCode();
-
-      try {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'WhatsAppIntent', {
-            content_name: 'Ganamos WhatsApp Intent',
-            content_category: locationName,
-            lead_code: leadCode
-          });
-        }
-      } catch (err) {
-        console.warn('fbq intent error', err);
-      }
-
-      try {
-        if (typeof gtag === 'function') {
-          gtag('event', 'whatsapp_intent_ganamos', {
-            event_category: 'engagement',
-            event_label: locationName,
-            lead_code: leadCode,
-            value: 1
-          });
-        }
-      } catch (err) {
-        console.warn('gtag intent error', err);
-      }
-    }
-
-    function trackLeadOnce(locationName) {
-      if (wasLeadAlreadyTracked()) {
-        return;
-      }
-
-      markLeadAsTracked();
-
-      const eventId = buildEventId(locationName);
-      const leadCode = getOrCreateLeadCode();
-
-      try {
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            content_name: 'Ganamos WhatsApp Lead Confirmado',
-            content_category: locationName,
-            lead_code: leadCode,
-            value: 0,
-            currency: 'ARS'
-          }, {
-            eventID: eventId
-          });
-
-          fbq('trackCustom', 'WhatsAppOpenConfirmed', {
-            content_name: 'Ganamos WhatsApp Open Confirmed',
-            content_category: locationName,
-            lead_code: leadCode
-          });
-        }
-      } catch (err) {
-        console.warn('fbq lead error', err);
-      }
-
-      try {
-        if (typeof gtag === 'function') {
-          gtag('event', 'lead_whatsapp_ganamos', {
-            event_category: 'engagement',
-            event_label: locationName,
-            lead_code: leadCode,
-            value: 1
-          });
-        }
-      } catch (err) {
-        console.warn('gtag lead error', err);
-      }
-    }
 
     function fadeText(el, newText) {
       if (!el) return;
@@ -832,229 +635,25 @@
       }, 180);
     }
 
-    function setButtonsLoading() {
-      ctaButtons.forEach(({ button, text }) => {
-        button.classList.add('opacity-60', 'cursor-not-allowed');
-        button.setAttribute('href', '#');
-        button.setAttribute('aria-disabled', 'true');
-
-        if (text) {
-          text.textContent = 'Cargando...';
-        }
-      });
-    }
-
-    function setButtonsError() {
-      ctaButtons.forEach(({ button, text }) => {
-        button.classList.add('opacity-60', 'cursor-not-allowed');
-        button.setAttribute('href', '#');
-        button.setAttribute('aria-disabled', 'true');
-
-        if (text) {
-          text.textContent = 'WhatsApp no disponible';
-        }
-      });
-
-      console.warn(numbersLoadError);
-    }
-
     function updateCTAs(index) {
-      if (!numbersLoaded) {
-        setButtonsLoading();
-        return;
-      }
-
-      if (!whatsappNumbers.length) {
-        setButtonsError();
-        return;
-      }
-
       const phrase = phrases[index];
 
       ctaButtons.forEach(({ button, text, isFloat }) => {
         button.classList.remove('opacity-60', 'cursor-not-allowed');
-        button.removeAttribute('data-opening');
-        button.setAttribute('href', '#whatsapp');
+        button.setAttribute('href', '#');
         button.setAttribute('aria-disabled', 'false');
-        button.dataset.ctaPhrase = phrase;
+        button.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
 
         if (text) {
           fadeText(text, isFloat ? 'WhatsApp 💬' : phrase);
         }
-
-        button.setAttribute('aria-label', phrase + ' — Ir a WhatsApp');
       });
     }
-
-    async function loadWhatsAppNumbers() {
-      try {
-        const response = await fetch(NUMBERS_FILE, { cache: 'no-store' });
-
-        if (!response.ok) {
-          throw new Error('No se pudo leer ' + NUMBERS_FILE);
-        }
-
-        const data = await response.json();
-        const loadedNumbers = normalizeWhatsAppNumbers(data);
-
-        if (!loadedNumbers.length) {
-          throw new Error('numeros.json no tiene números válidos.');
-        }
-
-        whatsappNumbers = loadedNumbers;
-        nextNumberIndex = getStoredRotationIndex() % whatsappNumbers.length;
-        numbersLoadError = '';
-      } catch (err) {
-        whatsappNumbers = [];
-        numbersLoadError = 'No se pudieron cargar números desde numeros.json. No se usará número default.';
-        console.warn('WhatsApp JSON error:', err);
-      } finally {
-        numbersLoaded = true;
-        updateCTAs(currentIndex);
-      }
-    }
-
-    function attachClickTracking() {
-      const modal = document.getElementById('waConfirmModal');
-      const confirmBtn = document.getElementById('waConfirmBtn');
-      const cancelBtn = document.getElementById('waCancelBtn');
-      const cancelBtnBottom = document.getElementById('waCancelBtnBottom');
-      const previewText = document.getElementById('waPreviewText');
-
-      let pendingWhatsappHref = '';
-      let pendingLocation = '';
-      let pendingButton = null;
-
-      function openModal() {
-        if (!modal) return;
-
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        if (!modal) return;
-
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = '';
-
-        pendingWhatsappHref = '';
-        pendingLocation = '';
-        pendingButton = null;
-      }
-
-      function setOpeningState(button) {
-        if (!button) return;
-
-        if (button.dataset.opening !== '1') {
-          button.dataset.opening = '1';
-
-          const span = button.querySelector('span');
-          if (span) {
-            span.textContent = 'Abriendo WhatsApp...';
-          }
-        }
-      }
-
-      ctaButtons.forEach(({ button, location }) => {
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
-
-          if (!numbersLoaded || !whatsappNumbers.length) {
-            updateCTAs(currentIndex);
-            return;
-          }
-
-          const timeOnPageMs = Date.now() - pageLoadedAt;
-          const seemsHuman = hadHumanInteraction && timeOnPageMs > 650;
-
-          if (!seemsHuman) {
-            return;
-          }
-
-          const phoneNumber = getNextWhatsAppNumberForClick();
-
-          if (!phoneNumber) {
-            updateCTAs(currentIndex);
-            return;
-          }
-
-          const message = buildWhatsAppMessage();
-          const whatsappHref = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
-
-          pendingWhatsappHref = whatsappHref;
-          pendingLocation = location;
-          pendingButton = button;
-
-          if (previewText) {
-            previewText.textContent = message;
-          }
-
-          /*
-            Primer evento:
-            Este NO es Lead.
-            Sirve para medir cuánta gente abre la confirmación.
-          */
-          trackWhatsAppIntent(location);
-
-          openModal();
-        });
-      });
-
-      if (confirmBtn) {
-        confirmBtn.addEventListener('click', function () {
-          if (!pendingWhatsappHref) {
-            closeModal();
-            return;
-          }
-
-          setOpeningState(pendingButton);
-
-          /*
-            Segundo evento:
-            Recién acá se dispara Lead.
-            Esto reduce falsos positivos en Meta.
-          */
-          trackLeadOnce(pendingLocation || 'confirm_modal');
-
-          window.location.href = pendingWhatsappHref;
-        });
-      }
-
-      if (cancelBtn) {
-        cancelBtn.addEventListener('click', closeModal);
-      }
-
-      if (cancelBtnBottom) {
-        cancelBtnBottom.addEventListener('click', closeModal);
-      }
-
-      if (modal) {
-        modal.addEventListener('click', function (event) {
-          if (event.target === modal) {
-            closeModal();
-          }
-        });
-      }
-
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-          closeModal();
-        }
-      });
-    }
-
-    setButtonsLoading();
-    loadWhatsAppNumbers();
 
     setInterval(() => {
       currentIndex = (currentIndex + 1) % phrases.length;
       updateCTAs(currentIndex);
     }, 4000);
-
-    attachClickTracking();
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1066,6 +665,12 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   })();
+  </script>
+
+  <script
+    src="https://app.truelead.com.ar/sdk/truelead.js"
+    data-project="tl_hwQaaQyrbS"
+    data-api="https://app.truelead.com.ar">
   </script>
 </body>
 </html>
