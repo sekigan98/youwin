@@ -1,0 +1,16 @@
+/login        https://app.truelead.com.ar/login        302
+/register     https://app.truelead.com.ar/register     302
+/admin-login  https://app.truelead.com.ar/admin-login  302
+/logout       https://app.truelead.com.ar/logout       302
+/connect      https://app.truelead.com.ar/panel        302
+/panel        https://app.truelead.com.ar/panel        302
+/app          https://app.truelead.com.ar/panel        302
+/admin        https://app.truelead.com.ar/admin        302
+/login.html        https://app.truelead.com.ar/login        301
+/register.html     https://app.truelead.com.ar/register     301
+/admin-login.html  https://app.truelead.com.ar/admin-login  301
+/app.html          https://app.truelead.com.ar/panel        301
+/connect.html      https://app.truelead.com.ar/panel        301
+/admin.html        https://app.truelead.com.ar/admin        301
+/api/*  https://app.truelead.com.ar/api/:splat  200
+/health https://app.truelead.com.ar/health 200

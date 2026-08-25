@@ -1,0 +1,70 @@
+services:
+  - type: web
+    name: truelead-api
+    env: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_FILE
+        value: /var/data/truelead-db.json
+      - key: WHATSAPP_SESSION_DIR
+        value: /var/data/whatsapp-sessions
+      - key: WHATSAPP_AUTO_RESTORE
+        value: true
+      - key: WHATSAPP_ALLOW_DEMO_CONNECT
+        value: false
+      - key: WHATSAPP_DISABLE_RECONNECT
+        value: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DATA_ENCRYPTION_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: true
+      - key: APP_URL
+        sync: false
+      - key: TRUELEAD_CONTACT_EMAIL
+        value: trueleadsite@gmail.com
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: 465
+      - key: SMTP_SECURE
+        value: true
+      - key: SMTP_USER
+        value: trueleadsite@gmail.com
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        value: trueleadsite@gmail.com
+      - key: CORS_ORIGIN
+        sync: false
+      - key: TRUELEAD_USD_ARS_RATE
+        value: 1200
+      - key: META_API_VERSION
+        value: v26.0
+      - key: META_REQUEST_TIMEOUT_MS
+        value: 10000
+      - key: META_QUEUE_MAX_ATTEMPTS
+        value: 6
+      - key: META_QUEUE_RETRY_BASE_SECONDS
+        value: 30
+      - key: LEAD_ASSOCIATION_WINDOW_DAYS
+        value: 30
+      - key: META_APP_SECRET
+        sync: false
+      - key: META_WHATSAPP_VERIFY_TOKEN
+        sync: false
+    disk:
+      name: truelead-data
+      mountPath: /var/data
+      sizeGB: 1

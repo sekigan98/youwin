@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincular WhatsApp — TrueLead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <img src="assets/logo.png" alt="TrueLead" />
+        <span>TRUELEAD</span>
+      </a>
+      <div class="actions">
+        <a class="btn btn-secondary" href="/panel">Volver al panel</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="grid-2">
+      <section class="card step wa-box">
+        <span class="badge">Vinculación segura</span>
+        <h1>Conectá WhatsApp por QR</h1>
+        <p class="muted">Esta página sirve para enviar a clientes y vincular su WhatsApp. El QR se genera con Baileys y permite vincular el WhatsApp del cliente al conector de TrueLead.</p>
+        <div class="qr-large" data-connect-qr-box></div>
+        <img data-connect-qr-img class="qr-img hidden" alt="QR de WhatsApp" />
+        <span data-connect-status class="status pending">Esperando QR</span>
+        <div class="actions" style="justify-content:center; margin-top:18px">
+          <button class="btn btn-primary" data-connect-request>Generar QR</button>
+          <button class="btn btn-secondary" data-connect-demo>Marcar conectado</button>
+        </div>
+        <div data-message class="notice hidden" style="margin-top:16px"></div>
+      </section>
+
+      <aside class="card step">
+        <h2>Instrucciones para el cliente</h2>
+        <ol class="instructions">
+          <li>Abrí WhatsApp en tu teléfono.</li>
+          <li>Ingresá a Dispositivos vinculados.</li>
+          <li>Tocá “Vincular un dispositivo”.</li>
+          <li>Escaneá el código QR de esta página.</li>
+        </ol>
+        <div class="notice">
+          Si el QR vence, generá uno nuevo desde esta misma página o desde el panel de la agencia.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/connect.js"></script>
+</body>
+</html>
