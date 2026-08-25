@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /panel
-Disallow: /login
-Disallow: /register
-Disallow: /logout
-
-Sitemap: https://truelead.com.ar/sitemap.xml
