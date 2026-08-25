@@ -627,51 +627,89 @@
   </div>
 
   <div class="modal-backdrop" data-modal="project">
-    <div class="modal-card">
-      <h2 data-project-modal-title>Nuevo proyecto</h2>
-      <form class="form" data-project-form>
-        <label><span>Cliente</span><select name="clientId" required data-client-select></select></label>
-        <label><span>Nombre del proyecto</span><input name="name" required placeholder="Landing Junio" /></label>
-        <label>
-          <span>Modo de medición</span>
-          <select name="trackingMode" data-tracking-mode>
-            <option value="landing">Landing → WhatsApp (SDK + QR)</option>
-            <option value="cloud_api">Anuncio → WhatsApp directo (Cloud API)</option>
-            <option value="hybrid">Ambos flujos</option>
-          </select>
-        </label>
-        <div class="form form-subsection" data-landing-config>
-          <label><span>Dominios autorizados de landing</span><textarea name="domain" rows="4" placeholder="https://cliente.com
+    <div class="modal-card project-modal-card" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+      <div class="modal-heading">
+        <div>
+          <span class="modal-eyebrow">Configuración</span>
+          <h2 id="project-modal-title" data-project-modal-title>Nuevo proyecto</h2>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar modal">×</button>
+      </div>
+
+      <form class="project-modal-form" data-project-form>
+        <div class="project-modal-scroll" data-project-modal-scroll>
+          <div class="project-form-grid project-form-grid--basics">
+            <label><span>Cliente</span><select name="clientId" required data-client-select></select></label>
+            <label><span>Nombre del proyecto</span><input name="name" required placeholder="Landing Junio" /></label>
+            <label class="project-field-full">
+              <span>Modo de medición</span>
+              <select name="trackingMode" data-tracking-mode>
+                <option value="landing">Landing → WhatsApp (SDK + QR)</option>
+                <option value="cloud_api">Anuncio → WhatsApp directo (Cloud API)</option>
+                <option value="hybrid">Ambos flujos</option>
+              </select>
+            </label>
+          </div>
+
+          <section class="project-config-block" data-landing-config>
+            <div class="project-config-heading">
+              <strong>Landing y WhatsApp</strong>
+              <small>El teléfono se obtiene desde la conexión vinculada.</small>
+            </div>
+            <div class="project-form-grid">
+              <label>
+                <span>Dominios autorizados</span>
+                <textarea name="domain" rows="3" placeholder="https://cliente.com
 https://www.cliente.com
-https://cliente.vercel.app"></textarea></label>
-          <div class="notice">Podés cargar uno o varios dominios. TrueLead solo creará intenciones si el request viene de uno de esos orígenes.</div>
-          <label>
-            <span>WhatsApp vinculado por QR</span>
-            <select name="whatsappSessionId" data-whatsapp-session-select></select>
-          </label>
-          <div class="notice">El SDK abrirá WhatsApp hacia este número y el conector QR detectará el código TL cuando se envíe.</div>
+https://cliente.vercel.app"></textarea>
+                <small class="field-help">Podés cargar varios dominios, uno por línea.</small>
+              </label>
+              <label>
+                <span>WhatsApp vinculado por QR</span>
+                <select name="whatsappSessionId" data-whatsapp-session-select></select>
+                <small class="field-help">El SDK abrirá este número y detectará el código TL enviado.</small>
+              </label>
+            </div>
+          </section>
+
+          <section class="project-config-block">
+            <div class="project-config-heading">
+              <strong>Meta Conversions API</strong>
+              <small>Estos datos son opcionales si todavía no configuraste Meta.</small>
+            </div>
+            <div class="project-form-grid">
+              <label><span>Dataset / Pixel ID</span><input name="metaDatasetId" placeholder="123456789" /></label>
+              <label>
+                <span>Moneda de las compras</span>
+                <select name="metaCurrency">
+                  <option value="ARS">ARS — Peso argentino</option>
+                  <option value="USD">USD — Dólar estadounidense</option>
+                  <option value="UYU">UYU — Peso uruguayo</option>
+                  <option value="CLP">CLP — Peso chileno</option>
+                  <option value="MXN">MXN — Peso mexicano</option>
+                </select>
+              </label>
+              <label><span>Meta CAPI Token</span><textarea name="metaCapiToken" rows="2" placeholder="EAAB..."></textarea></label>
+              <label><span>Test Event Code opcional</span><input name="metaTestEventCode" placeholder="TEST12345" /></label>
+            </div>
+            <div class="notice subtle project-inline-notice">TrueLead envía su propio evento cuando confirma el chat; no resta los resultados que Meta ya mostró.</div>
+          </section>
+
+          <section class="project-config-block hidden" data-cloud-config>
+            <div class="project-config-heading">
+              <strong>WhatsApp Cloud API</strong>
+              <small>Necesario para anuncios que abren WhatsApp directamente.</small>
+            </div>
+            <div class="project-form-grid">
+              <label><span>WhatsApp Business Account ID (WABA)</span><input name="metaWabaId" placeholder="987654321" /></label>
+              <label><span>Phone Number ID de Cloud API</span><input name="metaPhoneNumberId" placeholder="112233445566" /></label>
+              <label class="project-field-full"><span>IDs de anuncios asociados</span><textarea name="metaAdIds" rows="2" placeholder="Un source_id de anuncio por línea"></textarea></label>
+            </div>
+            <div class="notice project-inline-notice">Webhook: <strong>/api/webhooks/meta/whatsapp</strong>. En Render configurá <strong>META_APP_SECRET</strong> y <strong>META_WHATSAPP_VERIFY_TOKEN</strong>.</div>
+          </section>
         </div>
-        <label><span>Meta Dataset / Pixel ID</span><input name="metaDatasetId" placeholder="123456789" /></label>
-        <label><span>Meta CAPI Token</span><textarea name="metaCapiToken" rows="3" placeholder="EAAB..."></textarea></label>
-        <div class="form form-subsection hidden" data-cloud-config>
-          <label><span>WhatsApp Business Account ID (WABA)</span><input name="metaWabaId" placeholder="987654321" /></label>
-          <label><span>Phone Number ID de Cloud API</span><input name="metaPhoneNumberId" placeholder="112233445566" /></label>
-          <label><span>IDs de anuncios asociados</span><textarea name="metaAdIds" rows="3" placeholder="Un source_id de anuncio por línea"></textarea></label>
-          <div class="notice">Webhook: <strong>/api/webhooks/meta/whatsapp</strong>. En Render también configurá <strong>META_APP_SECRET</strong> y <strong>META_WHATSAPP_VERIFY_TOKEN</strong>. Si varios proyectos usan el mismo Phone Number ID, asociá sus IDs de anuncio para evitar atribución ambigua.</div>
-        </div>
-        <label>
-          <span>Moneda de las compras</span>
-          <select name="metaCurrency">
-            <option value="ARS">ARS — Peso argentino</option>
-            <option value="USD">USD — Dólar estadounidense</option>
-            <option value="UYU">UYU — Peso uruguayo</option>
-            <option value="CLP">CLP — Peso chileno</option>
-            <option value="MXN">MXN — Peso mexicano</option>
-          </select>
-        </label>
-        <label><span>Test Event Code opcional</span><input name="metaTestEventCode" placeholder="TEST12345" /></label>
-        <div class="notice subtle">TrueLead envía un evento propio cuando confirma el chat. No reemplaza ni resta los resultados que Meta ya mostró en la campaña.</div>
-        <div class="modal-actions">
+
+        <div class="modal-actions project-modal-actions">
           <button type="button" class="btn btn-secondary" data-close-modal>Cerrar</button>
           <button class="btn btn-primary" type="submit">Guardar proyecto</button>
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "truelead-functional",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "TrueLead SaaS for confirmed WhatsApp conversations, sales validation and resilient Meta CAPI delivery.",
   "main": "src/server.js",
   "type": "module",

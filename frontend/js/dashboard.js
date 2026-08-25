@@ -758,6 +758,8 @@ function openProjectModal(projectId = '') {
 
   updateProjectModeFields();
 
+  const scrollArea = modal.querySelector('[data-project-modal-scroll]');
+  if (scrollArea) scrollArea.scrollTop = 0;
   modal.classList.add('open');
 }
 

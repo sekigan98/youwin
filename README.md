@@ -1,4 +1,4 @@
-# TrueLead 2.1.0
+# TrueLead 2.1.1
 
 TrueLead mide el tramo que suele quedar invisible entre un clic que abre WhatsApp y una conversación que realmente comenzó. Está pensado para agencias que necesitan separar intención, chat confirmado y venta validada, y devolver esas señales a Meta Conversions API (CAPI).
 
@@ -36,6 +36,7 @@ Referencias oficiales: [Conversions API for Business Messaging](https://develope
 - Registro con verificación de email y sesión mediante cookie `HttpOnly`.
 - Panel de agencia y backoffice administrador separados.
 - Clientes, proyectos, límites por plan y vencimiento efectivo.
+- Formulario de proyectos compacto, responsive y con acciones siempre visibles.
 - Varios WhatsApps por cliente y proyectos asociados a una sesión.
 - Constructor visual de landings por proyecto con vista previa y descarga ZIP.
 - Favicon, logo, portada, galería, colores, copies y analítica configurables.
